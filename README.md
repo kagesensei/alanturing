@@ -12,3 +12,26 @@ This repository is a proof of concept for his work, a homage to the man who laid
 By recreating and exploring these systems, I hope to keep Turing’s legacy alive—both as a pioneer of theoretical computer science and as a hero of World War II.
 
 For those who wish to understand computation from its origins, this repository is both a study and a tribute.
+
+## Roadmap
+
+### Turing Machine Concepts
+- [x] [Basic Turing Machine Simulator](turing_machines/basic_simulator)
+- [ ] Universal Turing Machine
+- [ ] Non-Deterministic Turing Machine Simulation
+- [ ] Turing Machine for Arithmetic
+- [ ] Turing Machine for Palindrome Checking
+- [ ] Self-Replicating Turing Machine
+
+### Cryptanalysis & Enigma
+- [ ] Enigma Machine Simulator
+- [ ] Brute Force Enigma Cracker
+- [ ] Statistical Frequency Analysis for Cryptanalysis
+- [ ] Simulated Bombe Machine
+- [ ] Automated Enigma Key Discovery
+- [ ] Lorenz Cipher Simulator & Cracker
+
+### Advanced Concepts
+- [ ] Quantum-Inspired Cryptanalysis
+- [ ] Turing-Complete Cellular Automaton
+- [ ] Genetic Algorithm for Code Breaking
