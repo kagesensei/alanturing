@@ -57,3 +57,8 @@ the venv active, `cd` into a project directory and run its script or
 - [ ] Quantum-Inspired Cryptanalysis
 - [ ] Turing-Complete Cellular Automaton
 - [ ] Genetic Algorithm for Code Breaking
+
+### Bonus Projects & Reflections
+- [ ] Turing Test Simulator (simple chat-based exploration of the Turing Test)
+- [ ] Interactive Enigma GUI (desktop or web front-end for the Enigma simulator)
+- [ ] `historical_notes.md` — personal reflections and inspirations behind this project
