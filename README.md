@@ -39,7 +39,7 @@ the venv active, `cd` into a project directory and run its script or
 
 ### Turing Machine Concepts
 - [x] [Basic Turing Machine Simulator](turing_machines/basic_simulator)
-- [ ] Universal Turing Machine
+- [x] [Universal Turing Machine](turing_machines/universal_turing_machine)
 - [ ] Non-Deterministic Turing Machine Simulation
 - [ ] Turing Machine for Arithmetic
 - [ ] Turing Machine for Palindrome Checking
