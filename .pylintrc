@@ -1,0 +1,25 @@
+[MAIN]
+recursive=yes
+ignore=.venv,.idea,.git
+
+[MESSAGES CONTROL]
+enable=all
+disable=
+    missing-module-docstring,
+    missing-class-docstring,
+    missing-function-docstring,
+    too-few-public-methods
+
+[DESIGN]
+# NASA Power of 10, rule 4: keep functions to roughly one printed page.
+max-statements=60
+max-branches=10
+max-locals=15
+max-args=6
+max-nested-blocks=4
+
+[FORMAT]
+max-line-length=100
+
+[BASIC]
+good-names=i,j,k,x,y,_

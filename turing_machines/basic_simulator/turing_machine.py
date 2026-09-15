@@ -83,7 +83,8 @@ class TuringMachine:
         if not tape:
             return ""
         lo, hi = min(tape), max(tape)
-        return "".join(tape[i] for i in range(lo, hi + 1)).strip(self.blank_symbol) or self.blank_symbol
+        joined = "".join(tape[i] for i in range(lo, hi + 1))
+        return joined.strip(self.blank_symbol) or self.blank_symbol
 
 
 def binary_increment_machine() -> TuringMachine:

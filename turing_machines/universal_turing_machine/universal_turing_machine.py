@@ -57,8 +57,9 @@ class UTMResult:
 
 def _validate_token(token: str) -> None:
     if not token or RESERVED_CHARS & set(token):
+        reserved = "".join(sorted(RESERVED_CHARS))
         raise ValueError(
-            f"invalid state/symbol token {token!r}: must be non-empty and free of {''.join(sorted(RESERVED_CHARS))!r}"
+            f"invalid state/symbol token {token!r}: must be non-empty and free of {reserved!r}"
         )
 
 
@@ -72,12 +73,31 @@ def encode_transitions(transitions: TransitionTable) -> str:
     return "".join(rules)
 
 
-def build_tape(description: str, input_string: str, initial_state: str, blank_symbol: str = "_") -> str:
+def build_tape(
+    description: str, input_string: str, initial_state: str, blank_symbol: str = "_"
+) -> str:
     """Combine an encoded description and an input string into one UTM tape."""
     _validate_token(initial_state)
     first_symbol = input_string[0] if input_string else blank_symbol
     rest = input_string[1:]
     return f"{description}##[{initial_state}:{first_symbol}]{rest}"
+
+
+def _split_config(config: str) -> tuple[str, str, str, str]:
+    """Split a UTM config string into (left, state, symbol, right)."""
+    match = _MARKER_RE.search(config)
+    return config[: match.start()], match.group(1), match.group(2), config[match.end() :]
+
+
+def _find_rule(description: str, state: str, symbol: str) -> tuple[str, str, str] | None:
+    """Look up (new_state, write_symbol, direction) for (state, symbol), or None."""
+    rule_prefix = f"{state},{symbol}>"
+    start = description.find(rule_prefix)
+    if start == -1:
+        return None
+    end = description.index(";", start)
+    new_state, write_symbol, direction = description[start + len(rule_prefix) : end].split(",")
+    return new_state, write_symbol, direction
 
 
 class UniversalTuringMachine:
@@ -88,15 +108,12 @@ class UniversalTuringMachine:
     def step(self, tape: str) -> str | None:
         """Advance a UTM tape by one step, or return None if no rule matches."""
         description, config = tape.split("##", 1)
-        match = _MARKER_RE.search(config)
-        left, state, symbol, right = config[: match.start()], match.group(1), match.group(2), config[match.end() :]
+        left, state, symbol, right = _split_config(config)
 
-        rule_prefix = f"{state},{symbol}>"
-        start = description.find(rule_prefix)
-        if start == -1:
+        rule = _find_rule(description, state, symbol)
+        if rule is None:
             return None
-        end = description.index(";", start)
-        new_state, write_symbol, direction = description[start + len(rule_prefix) : end].split(",")
+        new_state, write_symbol, direction = rule
 
         if direction == Direction.RIGHT.value:
             if not right:
@@ -124,8 +141,7 @@ class UniversalTuringMachine:
             steps += 1
 
         _, config = current.split("##", 1)
-        match = _MARKER_RE.search(config)
-        left, state, symbol, right = config[: match.start()], match.group(1), match.group(2), config[match.end() :]
+        left, state, symbol, right = _split_config(config)
         tape_str = (left + symbol + right).strip(self.blank_symbol) or self.blank_symbol
 
         return UTMResult(
@@ -163,12 +179,12 @@ if __name__ == "__main__":
 
     increment_description = encode_transitions(binary_increment_transitions())
     for value in ["0", "1", "1011", "111"]:
-        tape = build_tape(increment_description, value, initial_state="right")
-        result = utm.run(tape)
+        machine_tape = build_tape(increment_description, value, initial_state="right")
+        result = utm.run(machine_tape)
         print(f"increment({value!r}) -> {result.tape!r}  [{result.steps} steps]")
 
     complement_description = encode_transitions(binary_complement_transitions())
     for value in ["1010", "1111", "0000"]:
-        tape = build_tape(complement_description, value, initial_state="scan")
-        result = utm.run(tape)
+        machine_tape = build_tape(complement_description, value, initial_state="scan")
+        result = utm.run(machine_tape)
         print(f"complement({value!r}) -> {result.tape!r}  [{result.steps} steps]")

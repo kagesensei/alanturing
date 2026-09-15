@@ -171,7 +171,7 @@ def text_to_bits(text: str) -> str:
 
 def bits_to_text(bits: str) -> str:
     """Decode a binary string produced by `text_to_bits()` back to text."""
-    if len(bits) % BITS_PER_CHARACTER != 0:
+    if len(bits) % BITS_PER_CHARACTER:
         raise ValueError(f"bit string length must be a multiple of {BITS_PER_CHARACTER}")
     characters = [
         chr(int(bits[i : i + BITS_PER_CHARACTER], 2))
