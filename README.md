@@ -40,10 +40,10 @@ the venv active, `cd` into a project directory and run its script or
 ### Turing Machine Concepts
 - [x] [Basic Turing Machine Simulator](turing_machines/basic_simulator)
 - [x] [Universal Turing Machine](turing_machines/universal_turing_machine)
-- [ ] Non-Deterministic Turing Machine Simulation
-- [ ] Turing Machine for Arithmetic
-- [ ] Turing Machine for Palindrome Checking
-- [ ] Self-Replicating Turing Machine
+- [x] [Non-Deterministic Turing Machine Simulation](turing_machines/nondeterministic_turing_machine)
+- [x] [Turing Machine for Arithmetic](turing_machines/arithmetic_turing_machine)
+- [x] [Turing Machine for Palindrome Checking](turing_machines/palindrome_turing_machine)
+- [x] [Self-Replicating Turing Machine](turing_machines/self_replicating_turing_machine)
 
 ### Cryptanalysis & Enigma
 - [ ] Enigma Machine Simulator
