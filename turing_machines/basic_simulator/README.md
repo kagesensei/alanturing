@@ -3,7 +3,8 @@
 A deterministic Turing Machine: an infinite two-way tape, a head, a current
 state, and a transition function `(state, symbol) -> (new_state, write_symbol, direction)`.
 
-Requires Python 3.9+ (uses builtin generic types like `tuple[...]`).
+Requires Python 3.12 — see the [repo root README](../../README.md#setup) for
+venv setup.
 
 ## Usage
 

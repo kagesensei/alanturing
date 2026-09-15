@@ -13,6 +13,28 @@ By recreating and exploring these systems, I hope to keep Turing’s legacy aliv
 
 For those who wish to understand computation from its origins, this repository is both a study and a tribute.
 
+## Setup
+
+Requires Python 3.12. Create and activate a virtual environment at the repo
+root before running anything:
+
+```
+py -3.12 -m venv .venv
+
+# Windows (PowerShell)
+.venv\Scripts\Activate.ps1
+
+# Windows (Git Bash)
+source .venv/Scripts/activate
+
+# macOS/Linux
+source .venv/bin/activate
+```
+
+Each project folder is self-contained (standard library only so far) — with
+the venv active, `cd` into a project directory and run its script or
+`python -m unittest -v` directly.
+
 ## Roadmap
 
 ### Turing Machine Concepts
