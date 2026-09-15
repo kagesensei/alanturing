@@ -91,6 +91,15 @@ Bonus Projects & Reflections). When a roadmap item is completed:
 1. Check it off in the root `README.md`.
 2. Link it to its project folder.
 
+## Hugging Face tracking
+
+The user's Hugging Face account (`kageskull`) is used for this project. Any
+model, dataset, or space published as part of a roadmap item should be
+recorded in `HUGGINGFACE.md` (name, link, which roadmap item it belongs to,
+notes) — linked from the root `README.md`. Update it whenever new HF
+artifacts are published, the same way `README.md`'s roadmap checklist is
+updated when an item is completed.
+
 ## Git workflow
 
 - Commit completed work locally as it's finished.

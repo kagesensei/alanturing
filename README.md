@@ -35,6 +35,11 @@ Each project folder is self-contained (standard library only so far) — with
 the venv active, `cd` into a project directory and run its script or
 `python -m unittest -v` directly.
 
+## Hugging Face
+
+Any models, datasets, or spaces published from this project are tracked in
+[HUGGINGFACE.md](HUGGINGFACE.md).
+
 ## Roadmap
 
 ### Turing Machine Concepts
