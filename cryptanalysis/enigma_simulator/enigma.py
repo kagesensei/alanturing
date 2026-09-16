@@ -152,10 +152,19 @@ class EnigmaMachine:
             middle.step()
         right.step()
 
-    def encrypt_letter(self, letter: str) -> str:
-        _validate_letter("letter", letter)
+    def step(self) -> None:
+        """Advance the rotors exactly as a real keypress would, without
+        substituting a letter. Pairs with `substitute()` for callers (e.g.
+        the Bombe simulator) that need the rotor state at each position
+        independently of processing a signal through it.
+        """
         self._step_rotors()
 
+    def substitute(self, letter: str) -> str:
+        """Run `letter` through the plugboard/rotors/reflector at the
+        *current* rotor position, without stepping first.
+        """
+        _validate_letter("letter", letter)
         index = ALPHABET.index(self.plugboard.swap(letter))
         for rotor in reversed(self.rotors):
             index = rotor.forward(index)
@@ -163,6 +172,10 @@ class EnigmaMachine:
         for rotor in self.rotors:
             index = rotor.backward(index)
         return self.plugboard.swap(ALPHABET[index])
+
+    def encrypt_letter(self, letter: str) -> str:
+        self.step()
+        return self.substitute(letter)
 
     def encrypt_message(self, text: str) -> str:
         """Encrypt `text`, dropping anything that isn't an A-Z letter."""
