@@ -53,7 +53,7 @@ Any models, datasets, or spaces published from this project are tracked in
 ### Cryptanalysis & Enigma
 - [x] [Enigma Machine Simulator](cryptanalysis/enigma_simulator)
 - [x] [Brute Force Enigma Cracker](cryptanalysis/brute_force_cracker)
-- [ ] Statistical Frequency Analysis for Cryptanalysis
+- [x] [Statistical Frequency Analysis for Cryptanalysis](cryptanalysis/frequency_analysis)
 - [ ] Simulated Bombe Machine
 - [ ] Automated Enigma Key Discovery
 - [ ] Lorenz Cipher Simulator & Cracker
