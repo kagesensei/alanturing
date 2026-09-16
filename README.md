@@ -66,4 +66,4 @@ Any models, datasets, or spaces published from this project are tracked in
 ### Bonus Projects & Reflections
 - [ ] Turing Test Simulator (simple chat-based exploration of the Turing Test)
 - [ ] Interactive Enigma GUI (desktop or web front-end for the Enigma simulator)
-- [ ] `historical_notes.md` — personal reflections and inspirations behind this project
+- [x] [`historical_notes.md`](historical_notes.md) — personal reflections and inspirations behind this project
