@@ -25,6 +25,10 @@ max-locals=15
 max-args=7
 max-positional-arguments=7
 max-nested-blocks=4
+# LorenzSettings legitimately holds 8 fields (a pattern + start position
+# for each of 4 wheel groups) -- it's a plain data holder, not a class
+# whose behavior is getting too tangled.
+max-attributes=8
 
 [FORMAT]
 max-line-length=100
