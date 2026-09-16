@@ -51,7 +51,7 @@ Any models, datasets, or spaces published from this project are tracked in
 - [x] [Self-Replicating Turing Machine](turing_machines/self_replicating_turing_machine)
 
 ### Cryptanalysis & Enigma
-- [ ] Enigma Machine Simulator
+- [x] [Enigma Machine Simulator](cryptanalysis/enigma_simulator)
 - [ ] Brute Force Enigma Cracker
 - [ ] Statistical Frequency Analysis for Cryptanalysis
 - [ ] Simulated Bombe Machine
