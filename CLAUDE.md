@@ -39,6 +39,17 @@ Each roadmap item gets its own self-contained folder (e.g. under
 Prefer this per-folder structure over flat top-level scripts (e.g.
 `tm_addition.py`) — it scales better with tests + docs per project.
 
+**Exception — genuine engine reuse:** items that are inherently built on
+another item's engine (e.g. everything under `cryptanalysis/` that drives
+the Enigma machine: `brute_force_cracker`, and later the Bombe simulation
+and automated key discovery) should import that engine rather than
+duplicate crypto-critical logic across folders. `brute_force_cracker`
+imports `enigma_simulator/enigma.py` via a `sys.path` addition (see the
+top of `brute_force_cracker.py`); `.pylintrc`'s `init-hook` mirrors that so
+Pylint resolves it too. This is different from the TM modules' *incidental*
+duplication (a shared `Direction` enum, etc.), which stays duplicated
+because those modules are genuinely independent of each other.
+
 ## Coding standards
 
 Code here needs to stay stable and easy to maintain, so it follows the
