@@ -1,11 +1,21 @@
+import json
+import os
+import tempfile
 import unittest
+from pathlib import Path
 
-from app import _parse_plugboard, app
+# Redirect logging to a throwaway file *before* importing app, so the
+# test suite never writes into the real activity.log a user's own
+# sessions get logged to.
+_TEST_LOG = Path(tempfile.gettempdir()) / "enigma_gui_test_activity.log"
+os.environ["ENIGMA_GUI_LOG_PATH"] = str(_TEST_LOG)
+
+from app import _LOG_PATH, _parse_plugboard, app  # pylint: disable=wrong-import-position
 
 # Importing `app` already adds enigma_simulator to sys.path as a side
 # effect (see app.py), so this import can rely on that rather than
 # repeating the sys.path setup here.
-from enigma import EnigmaMachine, EnigmaSettings
+from enigma import EnigmaMachine, EnigmaSettings  # pylint: disable=wrong-import-position
 
 VALID_FORM = {
     "rotor1": "I",
@@ -93,12 +103,40 @@ class TestEnigmaGuiRoutes(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"error", response.data.lower())
 
-    def test_missing_form_field_shows_error_not_500(self):
+    def test_missing_form_field_shows_clear_error_not_500(self):
         incomplete = dict(VALID_FORM)
         del incomplete["reflector"]
         response = self.client.post("/encrypt", data=incomplete)
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"error", response.data.lower())
+        # Specifically not Werkzeug's generic "400 Bad Request" text --
+        # that was a real bug this project's own activity log caught.
+        self.assertIn(b"required field missing", response.data)
+
+
+class TestActivityLogging(unittest.TestCase):
+    def setUp(self):
+        self.client = app.test_client()
+        self.before = _LOG_PATH.read_text(encoding="utf-8") if _LOG_PATH.exists() else ""
+
+    def _last_new_entry(self) -> dict:
+        after = _LOG_PATH.read_text(encoding="utf-8")
+        new_lines = after[len(self.before) :].strip().splitlines()
+        self.assertTrue(new_lines, "expected at least one new log line")
+        return json.loads(new_lines[-1])
+
+    def test_successful_encrypt_is_logged(self):
+        self.client.post("/encrypt", data=VALID_FORM)
+        entry = self._last_new_entry()
+        self.assertEqual(entry["message"], "HELLO WORLD")
+        self.assertIsNotNone(entry["ciphertext"])
+        self.assertIsNone(entry["error"])
+
+    def test_failed_encrypt_is_logged_with_error(self):
+        form = dict(VALID_FORM, rotor2="I")
+        self.client.post("/encrypt", data=form)
+        entry = self._last_new_entry()
+        self.assertIsNone(entry["ciphertext"])
+        self.assertIn("distinct", entry["error"])
 
 
 if __name__ == "__main__":
