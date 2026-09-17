@@ -61,7 +61,7 @@ Any models, datasets, or spaces published from this project are tracked in
 - [x] [Lorenz Cipher Simulator & Cracker](cryptanalysis/lorenz_cipher)
 
 ### Advanced Concepts
-- [ ] Quantum-Inspired Cryptanalysis
+- [x] [Quantum-Inspired Cryptanalysis](advanced_concepts/quantum_cryptanalysis)
 - [ ] Turing-Complete Cellular Automaton
 - [ ] Genetic Algorithm for Code Breaking
 

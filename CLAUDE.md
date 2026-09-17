@@ -51,15 +51,29 @@ different from the TM modules' *incidental* duplication (a shared
 `Direction` enum, etc.), which stays duplicated because those modules are
 genuinely independent of each other.
 
-**Exception — runtime dependencies for GUI/app-style items:** the user is
-a Flask person, not Django — any web-app-style roadmap item (e.g.
-`bonus/enigma_gui`) is a Flask app. These items pin their own runtime
-deps in a per-project `requirements.txt` (`pip install -r
-requirements.txt` from inside that project's folder), separate from the
-root `requirements-dev.txt` (Pylint, shared across the whole repo) —
-since Flask/etc. are only needed by that one project, not the repo as a
-whole, even though everything still installs into the one shared root
-`.venv`.
+**Exception — runtime dependencies for items that genuinely need them:**
+the user is a Flask person, not Django — any web-app-style roadmap item
+(e.g. `bonus/enigma_gui`) is a Flask app. Beyond that, some items
+legitimately need a real third-party library rather than reimplementing
+something dangerous or infeasible from scratch (e.g.
+`advanced_concepts/quantum_cryptanalysis` uses real Qiskit/Cirq as
+alternative quantum-circuit backends, and wraps `quantcrypt` for FIPS
+203/204/205 post-quantum crypto rather than hand-rolling lattice/hash-
+based primitives). These items pin their own runtime deps in a
+per-project `requirements.txt` (`pip install -r requirements.txt` from
+inside that project's folder), separate from the root
+`requirements-dev.txt` (Pylint, shared across the whole repo) — since
+these are only needed by that one project, not the repo as a whole, even
+though everything still installs into the one shared root `.venv`. For a
+dependency with a large transitive tree (Qiskit, Cirq), pin just the
+top-level packages rather than a full `pip freeze`.
+
+**Gotcha — never name a module after a package it needs to import.** A
+file literally named `qiskit.py` importing `from qiskit import ...`
+shadows the real package for itself (Python resolves same-directory
+modules before installed packages) — this is why
+`quantum_cryptanalysis`'s Qiskit/Cirq backends are named
+`qiskit_backend.py` / `cirq_backend.py`, not `qiskit.py` / `cirq.py`.
 
 ## Coding standards
 
