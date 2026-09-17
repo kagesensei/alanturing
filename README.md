@@ -63,7 +63,7 @@ Any models, datasets, or spaces published from this project are tracked in
 ### Advanced Concepts
 - [x] [Quantum-Inspired Cryptanalysis](advanced_concepts/quantum_cryptanalysis)
 - [x] [Turing-Complete Cellular Automaton](advanced_concepts/cellular_automaton)
-- [ ] Genetic Algorithm for Code Breaking
+- [x] [Genetic Algorithm for Code Breaking](advanced_concepts/genetic_codebreaker)
 
 ### Bonus Projects & Reflections
 - [ ] Turing Test Simulator (simple chat-based exploration of the Turing Test)

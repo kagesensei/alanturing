@@ -7,7 +7,7 @@ ignore=.venv,.idea,.git
 # mirrors that addition so Pylint can actually resolve the import too,
 # instead of the check being suppressed. Assumes pylint is run from the
 # repo root, as documented in CLAUDE.md.
-init-hook='import sys; sys.path.extend(["cryptanalysis/enigma_simulator", "cryptanalysis/bombe_simulator"])'
+init-hook='import sys; sys.path.extend(["cryptanalysis/enigma_simulator", "cryptanalysis/bombe_simulator", "cryptanalysis/frequency_analysis"])'
 
 [MESSAGES CONTROL]
 enable=all
