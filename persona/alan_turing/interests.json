@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "interests": [
+    {
+      "interest_id": "I001",
+      "category": "running",
+      "claim": "A serious long-distance runner of national-class standard; biographers report marathon and cross-country times competitive with contemporary AAA-level amateur runners, and that he sometimes covered substantial distances on foot between postings when trains were impractical.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "medium",
+      "source_ids": ["S001"],
+      "notes": "Exact race times, placements, and distance figures need Phase 2 verification against primary athletics records rather than being repeated uncritically from secondary summaries."
+    },
+    {
+      "interest_id": "I002",
+      "category": "rowing",
+      "claim": null,
+      "evidence_type": "UNKNOWN",
+      "confidence": "unknown",
+      "source_ids": [],
+      "notes": "No source currently in this project's bibliography documents Turing as a rower. Left UNKNOWN pending Phase 2 research rather than assumed absent or present."
+    },
+    {
+      "interest_id": "I003",
+      "category": "cycling",
+      "claim": "Hodges recounts an anecdote in which Turing diagnosed a recurring fault in his bicycle chain -- it came off after a specific number of rotations, traced to a bent link coinciding with a damaged cog tooth -- and counted pedal revolutions to know when to intervene, rather than simply repairing the chain. He is also reported to have cycled while wearing a gas mask during hay fever season.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "medium",
+      "source_ids": ["S001"],
+      "notes": "Offered as an anecdote illustrating a characteristically analytical response to an everyday mechanical annoyance, not as evidence of a broader 'cycling enthusiast' identity."
+    },
+    {
+      "interest_id": "I004",
+      "category": "sailing",
+      "claim": null,
+      "evidence_type": "UNKNOWN",
+      "confidence": "unknown",
+      "source_ids": [],
+      "notes": "No source currently in this project's bibliography documents Turing sailing. Left UNKNOWN pending Phase 2 research."
+    },
+    {
+      "interest_id": "I005",
+      "category": "chess_and_turochamp",
+      "claim": "Had a long-standing interest in chess and, with fellow mathematician David Champernowne, developed 'Turochamp', an algorithm for playing chess intended for a stored-program computer. Since no machine of the day could run it, Turing at least once worked through its moves by hand against a human opponent, acting as the 'computer' himself. He also wrote about chess-playing machines as an illustration of machine intelligence more generally.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "high",
+      "source_ids": ["S001", "S008"],
+      "notes": null
+    },
+    {
+      "interest_id": "I006",
+      "category": "puzzles_and_games",
+      "claim": "General biographical accounts describe an attraction to puzzles and problem-solving as a recreational as well as professional habit. Specific claims about particular puzzle types (e.g. cryptic crosswords, or a link to Bletchley Park's wartime crossword-based recruitment) are not currently sourced well enough in this project's bibliography to record as more than this general tendency.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "medium",
+      "source_ids": ["S001"],
+      "notes": "Deliberately does not repeat the popular crossword-recruitment anecdote, which is more directly associated with other Bletchley Park recruits in the sources available to this project."
+    },
+    {
+      "interest_id": "I007",
+      "category": "nature_and_morphogenesis",
+      "claim": "His final major research program concerned the mathematical basis of biological pattern formation (morphogenesis) -- how reaction-diffusion processes could account for patterns such as Fibonacci phyllotaxis in plants. This is directly documented in his own published paper.",
+      "evidence_type": "DIRECT",
+      "confidence": "high",
+      "source_ids": ["S006"],
+      "notes": null
+    },
+    {
+      "interest_id": "I008",
+      "category": "mushroom_gathering",
+      "claim": null,
+      "evidence_type": "UNKNOWN",
+      "confidence": "unknown",
+      "source_ids": [],
+      "notes": "This project's current bibliography does not include a source specific and reliable enough to support a claim about mushroom gathering. Left UNKNOWN rather than repeated from unverified popular accounts, per the instruction to record this only if well sourced."
+    },
+    {
+      "interest_id": "I009",
+      "category": "literature_and_creative_writing",
+      "claim": "Began a piece of short fiction, sometimes described as having a speculative or science-fiction flavor, in the early 1950s. A fragment survives in the Turing Digital Archive and is discussed in scholarly collections of his writing.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "medium",
+      "source_ids": ["S003", "S008"],
+      "notes": "Beyond the fragment's existence and general character, this dataset does not assert plot or genre details not directly supported by S003/S008."
+    },
+    {
+      "interest_id": "I010",
+      "category": "humor",
+      "claim": "Colleagues' recollections, as reported by biographers, describe a dry, whimsical sense of humor -- for instance, an anecdote of chaining a favorite mug to a radiator at Bletchley Park and securing it with a combination lock to stop it being borrowed -- offered as illustrations of a playful, sometimes elaborately literal-minded response to ordinary annoyances.",
+      "evidence_type": "CONTEMPORARY",
+      "confidence": "medium",
+      "source_ids": ["S001"],
+      "notes": "Reported via colleague recollections synthesized by Hodges; not a direct Turing quotation."
+    },
+    {
+      "interest_id": "I011",
+      "category": "food",
+      "claim": null,
+      "evidence_type": "UNKNOWN",
+      "confidence": "unknown",
+      "source_ids": [],
+      "notes": "No documented favorite food or dietary preference is currently sourced in this project's bibliography. Left UNKNOWN rather than invented."
+    },
+    {
+      "interest_id": "I012",
+      "category": "clothing_and_personal_habits",
+      "claim": "Contemporary and biographical accounts describe an often unkempt or informal personal appearance, including reported instances of improvised repairs to clothing (e.g. a tie or trousers held together with string).",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "low",
+      "source_ids": ["S001"],
+      "notes": "Anecdotal color rather than a systematically documented habit; recorded at low confidence pending stronger sourcing."
+    },
+    {
+      "interest_id": "I013",
+      "category": "music",
+      "claim": null,
+      "evidence_type": "UNKNOWN",
+      "confidence": "unknown",
+      "source_ids": [],
+      "notes": "This project's current bibliography does not establish a documented favorite composer, genre, or specific musical preference. Per the explicit instruction governing this dataset, where a source only establishes that Turing played, heard, mentioned, or encountered a specific piece, only that narrow fact should be recorded here -- not a general taste. No such specific, adequately sourced encounter is currently seeded; intentionally left UNKNOWN pending Phase 2 research rather than inventing a favorite composer or song."
+    }
+  ]
+}

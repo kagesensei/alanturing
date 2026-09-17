@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "events": [
+    {
+      "event_id": "E001",
+      "year": 1912,
+      "date_display": "23 June 1912",
+      "title": "Born",
+      "description": "Born in Maida Vale, London.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "high",
+      "source_ids": ["S001", "S007"],
+      "tags": ["biography"]
+    },
+    {
+      "event_id": "E002",
+      "year": 1926,
+      "date_display": "1926-1931",
+      "title": "Sherborne School",
+      "description": "Attended Sherborne School.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "high",
+      "source_ids": ["S001"],
+      "tags": ["education"]
+    },
+    {
+      "event_id": "E003",
+      "year": 1928,
+      "date_display": "c. 1928-February 1930",
+      "title": "Friendship with Christopher Morcom",
+      "description": "Formed a close intellectual and emotional attachment to fellow Sherborne pupil Christopher Morcom; Morcom died in February 1930. Partly reconstructed from Turing's own later letters to Morcom's mother, quoted in Hodges.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "high",
+      "source_ids": ["S001"],
+      "tags": ["education", "relationships"]
+    },
+    {
+      "event_id": "E004",
+      "year": 1931,
+      "date_display": "1931-1934 (undergraduate); elected Fellow 1935",
+      "title": "King's College, Cambridge",
+      "description": "Undergraduate at King's College, Cambridge, 1931-1934; elected a Fellow of King's in 1935.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "high",
+      "source_ids": ["S001", "S003"],
+      "tags": ["education"]
+    },
+    {
+      "event_id": "E005",
+      "year": 1936,
+      "date_display": "1936",
+      "title": "\"On Computable Numbers\" published",
+      "description": "Published \"On Computable Numbers, with an Application to the Entscheidungsproblem\", introducing what became known as the Turing machine.",
+      "evidence_type": "DIRECT",
+      "confidence": "high",
+      "source_ids": ["S004"],
+      "tags": ["computability", "publication"]
+    },
+    {
+      "event_id": "E006",
+      "year": 1936,
+      "date_display": "1936-1938",
+      "title": "Princeton PhD under Alonzo Church",
+      "description": "Doctoral studies at Princeton University under Alonzo Church.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "high",
+      "source_ids": ["S001"],
+      "tags": ["education"]
+    },
+    {
+      "event_id": "E007",
+      "year": 1938,
+      "date_display": "1938-1939",
+      "title": "Part-time work for GC&CS begins",
+      "description": "Began part-time work for the Government Code and Cypher School before the outbreak of war.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "medium",
+      "source_ids": ["S001", "S010"],
+      "tags": ["cryptanalysis"]
+    },
+    {
+      "event_id": "E008",
+      "year": 1939,
+      "date_display": "from September 1939",
+      "title": "Bletchley Park, Hut 8",
+      "description": "Joined Bletchley Park at the outbreak of war; worked in Hut 8 on Naval Enigma and led design of the Bombe.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "high",
+      "source_ids": ["S001", "S009", "S010"],
+      "tags": ["cryptanalysis", "bletchley_park"]
+    },
+    {
+      "event_id": "E009",
+      "year": 1941,
+      "date_display": "1941",
+      "title": "Engagement to Joan Clarke",
+      "description": "Became engaged to Bletchley Park colleague Joan Clarke; the engagement was ended later the same year by mutual agreement, and the two remained close friends and colleagues.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "high",
+      "source_ids": ["S001"],
+      "tags": ["relationships", "bletchley_park"]
+    },
+    {
+      "event_id": "E010",
+      "year": 1942,
+      "date_display": "1942-1943",
+      "title": "United States visit",
+      "description": "Traveled to the United States, including liaison work related to secure speech transmission (the work that later fed into the 'Delilah' speech-encipherment project).",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "medium",
+      "source_ids": ["S001", "S010"],
+      "tags": ["cryptanalysis"]
+    },
+    {
+      "event_id": "E011",
+      "year": 1945,
+      "date_display": "1945-1948",
+      "title": "National Physical Laboratory: ACE design",
+      "description": "Joined the National Physical Laboratory to design the Automatic Computing Engine (ACE).",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "high",
+      "source_ids": ["S001"],
+      "tags": ["computing"]
+    },
+    {
+      "event_id": "E012",
+      "year": 1948,
+      "date_display": "from 1948",
+      "title": "Manchester University",
+      "description": "Joined the Computing Machine Laboratory at Manchester University, recruited by Max Newman.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "high",
+      "source_ids": ["S001"],
+      "tags": ["computing", "manchester"]
+    },
+    {
+      "event_id": "E013",
+      "year": 1950,
+      "date_display": "1950",
+      "title": "\"Computing Machinery and Intelligence\" published",
+      "description": "Published \"Computing Machinery and Intelligence\" in Mind, introducing the imitation game (later popularly known as the Turing Test).",
+      "evidence_type": "DIRECT",
+      "confidence": "high",
+      "source_ids": ["S005"],
+      "tags": ["publication", "machine_intelligence"]
+    },
+    {
+      "event_id": "E014",
+      "year": 1952,
+      "date_display": "1952",
+      "title": "\"The Chemical Basis of Morphogenesis\" published",
+      "description": "Published \"The Chemical Basis of Morphogenesis\", proposing a reaction-diffusion model for biological pattern formation.",
+      "evidence_type": "DIRECT",
+      "confidence": "high",
+      "source_ids": ["S006"],
+      "tags": ["publication", "morphogenesis", "manchester"]
+    },
+    {
+      "event_id": "E015",
+      "year": 1952,
+      "date_display": "1952",
+      "title": "Prosecution for \"gross indecency\"",
+      "description": "Prosecuted under then-current UK law after disclosing a relationship with Arnold Murray during a burglary investigation; accepted a probation order conditional on hormone treatment rather than imprisonment.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "high",
+      "source_ids": ["S001", "S010"],
+      "tags": ["relationships", "manchester"]
+    },
+    {
+      "event_id": "E016",
+      "year": 1954,
+      "date_display": "found 8 June 1954 (death likely 7 June 1954), Wilmslow",
+      "title": "Death",
+      "description": "Found dead at his home in Wilmslow; the inquest recorded a verdict of suicide by cyanide poisoning.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "high",
+      "source_ids": ["S001"],
+      "tags": ["biography"]
+    },
+    {
+      "event_id": "E017",
+      "year": 1954,
+      "date_display": "1954 (later scholarly reassessment)",
+      "title": "Contested scholarly analysis of the circumstances of death",
+      "description": "Jack Copeland has argued the surviving evidence is also consistent with accidental exposure to cyanide (e.g. from an electrolysis apparatus in the house) and that the original suicide verdict was not conclusively established. This is recorded here as a contested minority scholarly position, not as a resolved fact -- the majority scholarly position (per S001) remains that the death was a suicide.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "medium",
+      "source_ids": ["S012"],
+      "tags": ["biography", "contested"]
+    },
+    {
+      "event_id": "E018",
+      "year": 2013,
+      "date_display": "24 December 2013",
+      "title": "Posthumous royal pardon",
+      "description": "Granted a posthumous Royal Pardon for the 1952 conviction, under the Royal Prerogative of Mercy.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "high",
+      "source_ids": ["S013"],
+      "tags": ["legacy"]
+    }
+  ]
+}

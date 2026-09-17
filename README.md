@@ -67,5 +67,6 @@ Any models, datasets, or spaces published from this project are tracked in
 
 ### Bonus Projects & Reflections
 - [ ] Turing Test Simulator (simple chat-based exploration of the Turing Test)
+  - [x] Groundwork: [Alan Turing evidence-based historical persona](persona/alan_turing) — provenance/confidence-tagged source-of-truth data (not the simulator itself)
 - [x] [Interactive Enigma GUI](bonus/enigma_gui) (Flask web front-end for the Enigma simulator)
 - [x] [`historical_notes.md`](historical_notes.md) — personal reflections and inspirations behind this project

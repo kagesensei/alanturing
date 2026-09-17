@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "relationships": [
+    {
+      "relationship_id": "R001",
+      "person_name": "Christopher Morcom",
+      "relationship_type": "close_friendship_first_attachment",
+      "period": "c. 1928-February 1930",
+      "description": "A fellow pupil at Sherborne School with whom Turing formed a close intellectual and emotional attachment. Biographers treat this as formative for Turing's intellectual development and, per Hodges, for his later thinking about mind and machine. Sources differ on how explicitly romantic the attachment was understood to be by either party at the time; this dataset does not assert a characterization beyond 'close attachment' that the cited source does not itself make explicit.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "medium",
+      "source_ids": ["S001"],
+      "notes": "Do not overstate certainty about the romantic/platonic nature of this relationship beyond what S001 documents."
+    },
+    {
+      "relationship_id": "R002",
+      "person_name": "Joan Clarke",
+      "relationship_type": "colleague_and_fiancee",
+      "period": "Bletchley Park, Hut 8, engaged 1941",
+      "description": "Cryptanalyst colleague in Hut 8 at Bletchley Park; became engaged to Turing in 1941. The engagement was ended later that year by mutual agreement, after which they remained close friends and continued to work together.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "high",
+      "source_ids": ["S001"],
+      "notes": null
+    },
+    {
+      "relationship_id": "R003",
+      "person_name": "Sara Turing",
+      "relationship_type": "family_mother",
+      "period": "1912-1954",
+      "description": "Turing's mother; wrote a biographical memoir of her son, published in 1959.",
+      "evidence_type": "CONTEMPORARY",
+      "confidence": "high",
+      "source_ids": ["S007"],
+      "notes": "Treat claims sourced only to S007 as a close but personally invested contemporary account, not neutral scholarship."
+    },
+    {
+      "relationship_id": "R004",
+      "person_name": "Alonzo Church",
+      "relationship_type": "phd_supervisor",
+      "period": "1936-1938, Princeton",
+      "description": "Doctoral supervisor at Princeton University.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "high",
+      "source_ids": ["S001"],
+      "notes": null
+    },
+    {
+      "relationship_id": "R005",
+      "person_name": "Max Newman",
+      "relationship_type": "mentor_and_colleague",
+      "period": "Cambridge (1930s), Bletchley Park (Newmanry, WWII), Manchester (from 1948)",
+      "description": "Cambridge lecturer whose course introduced Turing to Hilbert's Entscheidungsproblem; later a wartime colleague heading the Newmanry at Bletchley Park; recruited Turing to Manchester University after the war.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "high",
+      "source_ids": ["S001"],
+      "notes": null
+    },
+    {
+      "relationship_id": "R006",
+      "person_name": "Robin Gandy",
+      "relationship_type": "friend_and_student",
+      "period": "late 1940s until Turing's death in 1954",
+      "description": "Close friend and Turing's only doctoral student; after Turing's death, served as his literary and academic executor and preserved many of his papers.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "high",
+      "source_ids": ["S001", "S003"],
+      "notes": null
+    },
+    {
+      "relationship_id": "R007",
+      "person_name": "Arnold Murray",
+      "relationship_type": "documented_relationship",
+      "period": "early 1952, Manchester",
+      "description": "A young man Turing was in a relationship with in Manchester in early 1952. Disclosure of this relationship during a burglary investigation led to Turing's prosecution for \"gross indecency\".",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "high",
+      "source_ids": ["S001", "S010"],
+      "notes": "Recorded strictly as a documented historical relationship per court/biographical record. No further characterization (e.g. of Turing's general romantic or sexual preferences beyond this documented relationship) is supported by the evidence in this dataset's bibliography and none should be inferred from this entry alone."
+    },
+    {
+      "relationship_id": "R008",
+      "person_name": "Hugh Alexander",
+      "relationship_type": "colleague",
+      "period": "Bletchley Park, Hut 8",
+      "description": "Bletchley Park Hut 8 colleague, later head of Hut 8; documented professional and collegial relationship.",
+      "evidence_type": "SCHOLARLY",
+      "confidence": "medium",
+      "source_ids": ["S001", "S009"],
+      "notes": null
+    },
+    {
+      "relationship_id": "R009",
+      "person_name": "I. J. Good",
+      "relationship_type": "colleague",
+      "period": "Bletchley Park (Hut 8, later the Newmanry)",
+      "description": "Bletchley Park colleague who later published personal recollections of working with Turing.",
+      "evidence_type": "CONTEMPORARY",
+      "confidence": "medium",
+      "source_ids": ["S011"],
+      "notes": null
+    }
+  ]
+}

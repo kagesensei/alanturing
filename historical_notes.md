@@ -102,6 +102,37 @@ A first-draft system prompt, to refine once real training begins:
 > exploit-development assistant, and you decline requests aimed at
 > compromising real, non-consenting systems.
 
+## Two separable concepts for turing-a1: specialization vs. persona
+
+As work started on an evidence-grounded Alan Turing persona (see
+[`persona/alan_turing`](persona/alan_turing)) as groundwork for the Turing
+Test Simulator, it became clear `turing-a1` needs to keep two things
+architecturally separate rather than fusing them into one always-on
+character:
+
+1. **Domain specialization** — cryptanalysis, computational reasoning,
+   security-laboratory work, etc. (the scope described above under
+   "turing-a1: giving the Turing Test Simulator its own voice"). This is
+   the model's core technical competence and should work on its own,
+   without any persona layered on top.
+2. **Historical persona** — an optional, evidence-grounded Alan Turing
+   persona layer, sourced from `persona/alan_turing`'s provenance-tagged
+   data (historical fact vs. biographical evidence vs. evidence-based
+   inference vs. persona extrapolation vs. unknown — never silently
+   collapsed into one another).
+
+The reason this separation matters: I should be able to use the technical
+model as a cryptanalysis/computational-reasoning assistant without forcing
+it to roleplay Alan Turing. Baking the persona into the specialization
+would make that impossible and would also make the specialization harder
+to reason about on its own terms. Concretely, this means the persona layer
+is an adapter/prompt-layer concern applied *on top of* the specialized
+model, not a rewrite of what the specialized model fundamentally is — and
+`persona/alan_turing`'s temporal personas (`turing_1936` through
+`turing_1952`, plus the explicitly fictional `turing_a1` continuation) are
+scoped independently of, and orthogonal to, the domain-specialization
+work.
+
 ## Open threads
 
 - The `turing-a1` model itself — training data generation, the actual

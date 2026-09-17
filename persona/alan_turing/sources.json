@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "source_id": "S001",
+      "title": "Alan Turing: The Enigma",
+      "author": "Andrew Hodges",
+      "date": "1983 (updated ed. 2012)",
+      "publisher": "Princeton University Press",
+      "identifier": "ISBN 978-0-691-15564-7 (2012 updated ed.)",
+      "source_type": "book",
+      "primary_or_secondary": "secondary",
+      "notes": "The standard scholarly biography; synthesizes archival material, correspondence, and colleague recollections. Precise page/chapter citations for individual claims in this dataset are not yet recorded and should be verified directly against the book in Phase 2."
+    },
+    {
+      "source_id": "S002",
+      "title": "www.turing.org.uk (Alan Turing: the enigma -- companion site)",
+      "author": "Andrew Hodges",
+      "date": "ongoing",
+      "publisher": "self-published",
+      "identifier": "https://www.turing.org.uk/",
+      "source_type": "website",
+      "primary_or_secondary": "secondary",
+      "notes": "Reference companion site maintained by Turing's biographer; useful for cross-checking dates and details from S001."
+    },
+    {
+      "source_id": "S003",
+      "title": "The Turing Digital Archive",
+      "author": "King's College, Cambridge",
+      "date": "ongoing",
+      "publisher": "King's College, Cambridge",
+      "identifier": "https://turingarchive.kings.cam.ac.uk/",
+      "source_type": "archive",
+      "primary_or_secondary": "primary",
+      "notes": "Digitized personal papers, correspondence, and manuscripts. Individual item/folio references are not yet recorded in this dataset and should be added when a specific document is cited."
+    },
+    {
+      "source_id": "S004",
+      "title": "On Computable Numbers, with an Application to the Entscheidungsproblem",
+      "author": "A. M. Turing",
+      "date": "1936",
+      "publisher": "Proceedings of the London Mathematical Society, ser. 2, vol. 42",
+      "identifier": "doi:10.1112/plms/s2-42.1.230",
+      "source_type": "published_paper",
+      "primary_or_secondary": "primary",
+      "notes": "Turing's own published work; the foundational computability paper."
+    },
+    {
+      "source_id": "S005",
+      "title": "Computing Machinery and Intelligence",
+      "author": "A. M. Turing",
+      "date": "1950",
+      "publisher": "Mind, vol. 59, no. 236",
+      "identifier": "doi:10.1093/mind/LIX.236.433",
+      "source_type": "published_paper",
+      "primary_or_secondary": "primary",
+      "notes": "Turing's own published work; introduces the imitation game."
+    },
+    {
+      "source_id": "S006",
+      "title": "The Chemical Basis of Morphogenesis",
+      "author": "A. M. Turing",
+      "date": "1952",
+      "publisher": "Philosophical Transactions of the Royal Society B, vol. 237",
+      "identifier": "doi:10.1098/rstb.1952.0012",
+      "source_type": "published_paper",
+      "primary_or_secondary": "primary",
+      "notes": "Turing's own published work on reaction-diffusion pattern formation."
+    },
+    {
+      "source_id": "S007",
+      "title": "Alan M. Turing",
+      "author": "Sara Turing",
+      "date": "1959 (repr. 2012 with an afterword by Martin Davis)",
+      "publisher": "Cambridge University Press (2012 reprint)",
+      "identifier": "ISBN 978-1-107-02058-7 (2012 reprint)",
+      "source_type": "memoir",
+      "primary_or_secondary": "secondary",
+      "notes": "Biographical memoir written by Turing's mother; a contemporary but personally invested source -- treat claims from it as CONTEMPORARY evidence, not neutral scholarship."
+    },
+    {
+      "source_id": "S008",
+      "title": "The Essential Turing",
+      "author": "B. Jack Copeland (ed.)",
+      "date": "2004",
+      "publisher": "Oxford University Press",
+      "identifier": "ISBN 978-0-19-825080-7",
+      "source_type": "primary_source_collection",
+      "primary_or_secondary": "primary",
+      "notes": "Annotated collection of Turing's own papers and writings, with scholarly commentary by Copeland."
+    },
+    {
+      "source_id": "S009",
+      "title": "Bletchley Park Trust / Bletchley Park Research",
+      "author": "Bletchley Park Trust",
+      "date": "ongoing",
+      "publisher": "Bletchley Park Trust",
+      "identifier": "https://bletchleypark.org.uk/",
+      "source_type": "archival_institution",
+      "primary_or_secondary": "primary",
+      "notes": "Museum and archival body for wartime Government Code and Cypher School operations at Bletchley Park."
+    },
+    {
+      "source_id": "S010",
+      "title": "Government Code and Cypher School (GC&CS) records, HW series",
+      "author": "UK Government Code and Cypher School",
+      "date": "1938-1946 (records span)",
+      "publisher": "The National Archives (UK)",
+      "identifier": "The National Archives, Kew -- series HW",
+      "source_type": "archival_institution",
+      "primary_or_secondary": "primary",
+      "notes": "Official wartime cryptanalysis records. This dataset currently cites the series generally; specific document references should be added in Phase 2."
+    },
+    {
+      "source_id": "S011",
+      "title": "Pioneering Work on Computers at Bletchley",
+      "author": "I. J. Good",
+      "date": "1980",
+      "publisher": "in N. Metropolis, J. Howlett & G.-C. Rota (eds.), A History of Computing in the Twentieth Century, Academic Press",
+      "identifier": null,
+      "source_type": "colleague_recollection",
+      "primary_or_secondary": "secondary",
+      "notes": "Personal recollection by a Bletchley Park (Hut 8 / Newmanry) colleague of Turing's."
+    },
+    {
+      "source_id": "S012",
+      "title": "Turing: Pioneer of the Information Age",
+      "author": "B. Jack Copeland",
+      "date": "2012",
+      "publisher": "Oxford University Press",
+      "identifier": "ISBN 978-0-19-963979-3",
+      "source_type": "book",
+      "primary_or_secondary": "secondary",
+      "notes": "Scholarly biography; notably argues the standard suicide verdict for Turing's death is not conclusively established by the surviving evidence -- used here specifically as a contested, minority-position scholarly claim, not a settled fact."
+    },
+    {
+      "source_id": "S013",
+      "title": "Announcement of a Royal Pardon for Alan Turing under the Royal Prerogative of Mercy",
+      "author": "UK Government (Ministry of Justice)",
+      "date": "2013-12-24",
+      "publisher": "UK Government",
+      "identifier": null,
+      "source_type": "official_record",
+      "primary_or_secondary": "primary",
+      "notes": "Posthumous pardon for the 1952 conviction, following the 'Alan Turing law' campaign."
+    }
+  ]
+}

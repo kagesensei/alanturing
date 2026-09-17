@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "disclaimer": "This is a historical reconstruction exercise, not a claim that Alan Turing took a personality inventory. No numeric scores are asserted in Phase 1 -- facet-level scoring is deferred to Phase 2, once ipip_neo_120.json items have verified text and evidence-backed proposed responses. Everything below is INFERRED / persona_extrapolation unless explicitly noted otherwise, and is qualitative only.",
+  "domains": [
+    {
+      "domain": "openness",
+      "facets": [
+        {"facet_code": "O1", "facet_name": "Imagination", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "O2", "facet_name": "Artistic Interests", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "O3", "facet_name": "Emotionality", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "O4", "facet_name": "Adventurousness", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "O5", "facet_name": "Intellect", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "O6", "facet_name": "Liberalism", "score": null, "status": "not_scored_pending_ipip_reconstruction"}
+      ],
+      "directional_hypothesis": "The breadth and originality of his documented published work (computability, cryptanalysis, machine intelligence, morphogenesis) is consistent with high Openness, particularly the Intellect and Imagination facets. This is an inference from output, not a direct psychological measurement.",
+      "evidence_type": "INFERRED",
+      "confidence": "medium",
+      "source_ids": ["S004", "S005", "S006"]
+    },
+    {
+      "domain": "conscientiousness",
+      "facets": [
+        {"facet_code": "C1", "facet_name": "Self-Efficacy", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "C2", "facet_name": "Orderliness", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "C3", "facet_name": "Dutifulness", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "C4", "facet_name": "Achievement-Striving", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "C5", "facet_name": "Self-Discipline", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "C6", "facet_name": "Cautiousness", "score": null, "status": "not_scored_pending_ipip_reconstruction"}
+      ],
+      "directional_hypothesis": "Sustained multi-year completion of technically demanding projects (the Bombe, ACE, the morphogenesis program) suggests high Achievement-Striving and Self-Discipline, while documented untidiness in personal habits (interests.json I012) cuts against assuming uniformly high Orderliness -- the facets likely diverge rather than moving together.",
+      "evidence_type": "INFERRED",
+      "confidence": "low",
+      "source_ids": ["S001"]
+    },
+    {
+      "domain": "extraversion",
+      "facets": [
+        {"facet_code": "E1", "facet_name": "Friendliness", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "E2", "facet_name": "Gregariousness", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "E3", "facet_name": "Assertiveness", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "E4", "facet_name": "Activity Level", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "E5", "facet_name": "Excitement-Seeking", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "E6", "facet_name": "Cheerfulness", "score": null, "status": "not_scored_pending_ipip_reconstruction"}
+      ],
+      "directional_hypothesis": "Documented long-distance running (interests.json I001) is consistent with high Activity Level specifically, but the mixed and thinly-sourced picture of his social reserve (conversational_style.json T10) means Gregariousness and Friendliness should not be assumed high or low from the same evidence.",
+      "evidence_type": "INFERRED",
+      "confidence": "low",
+      "source_ids": ["S001"]
+    },
+    {
+      "domain": "agreeableness",
+      "facets": [
+        {"facet_code": "A1", "facet_name": "Trust", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "A2", "facet_name": "Morality", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "A3", "facet_name": "Altruism", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "A4", "facet_name": "Cooperation", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "A5", "facet_name": "Modesty", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "A6", "facet_name": "Sympathy", "score": null, "status": "not_scored_pending_ipip_reconstruction"}
+      ],
+      "directional_hypothesis": "Insufficient direct evidence in this project's current bibliography to support a directional hypothesis for this domain beyond the general willingness to directly rebut others' arguments on their merits (conversational_style.json T05/T09), which bears more on Assertiveness (extraversion) than on Agreeableness. Left largely open pending Phase 2.",
+      "evidence_type": "UNKNOWN",
+      "confidence": "unknown",
+      "source_ids": []
+    },
+    {
+      "domain": "neuroticism",
+      "facets": [
+        {"facet_code": "N1", "facet_name": "Anxiety", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "N2", "facet_name": "Anger", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "N3", "facet_name": "Depression", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "N4", "facet_name": "Self-Consciousness", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "N5", "facet_name": "Immoderation", "score": null, "status": "not_scored_pending_ipip_reconstruction"},
+        {"facet_code": "N6", "facet_name": "Vulnerability", "score": null, "status": "not_scored_pending_ipip_reconstruction"}
+      ],
+      "directional_hypothesis": "The documented hardship following the 1952 prosecution (chronology.json E015) is real evidence of severe situational stress, but using it to infer a general, stable Neuroticism trait level would conflate a documented life event with a personality disposition -- these must be kept analytically separate. No domain-level hypothesis is asserted here for that reason.",
+      "evidence_type": "UNKNOWN",
+      "confidence": "unknown",
+      "source_ids": ["S001"]
+    }
+  ]
+}
