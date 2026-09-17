@@ -62,7 +62,7 @@ Any models, datasets, or spaces published from this project are tracked in
 
 ### Advanced Concepts
 - [x] [Quantum-Inspired Cryptanalysis](advanced_concepts/quantum_cryptanalysis)
-- [ ] Turing-Complete Cellular Automaton
+- [x] [Turing-Complete Cellular Automaton](advanced_concepts/cellular_automaton)
 - [ ] Genetic Algorithm for Code Breaking
 
 ### Bonus Projects & Reflections
