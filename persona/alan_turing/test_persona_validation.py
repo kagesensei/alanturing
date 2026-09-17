@@ -186,13 +186,37 @@ class TestIpipItems(unittest.TestCase):
         self.assertTrue(all(item["status"] == "unscored" for item in doc["items"]))
         self.assertTrue(all(item["evidence_type"] == "UNKNOWN" for item in doc["items"]))
 
+    def test_all_120_items_have_real_text_and_keying(self):
+        doc = load_json("ipip_neo_120.json")
+        self.assertTrue(all(item["item_text"] for item in doc["items"]))
+        self.assertTrue(all(item["keying"] in ("positive", "negative") for item in doc["items"]))
+
     def test_unscored_status_must_match_unknown_evidence_type(self):
         broken = {"items": [{
             "item_id": "O1_1", "domain": "openness", "facet_code": "O1",
+            "item_text": "Have a vivid imagination.", "keying": "positive",
             "evidence_type": "UNKNOWN", "confidence": "unknown", "status": "scored",
         }]}
         issues = validate_ipip_items(broken)
         self.assertTrue(any("unscored" in str(issue) for issue in issues))
+
+    def test_rejects_missing_item_text(self):
+        broken = {"items": [{
+            "item_id": "O1_1", "domain": "openness", "facet_code": "O1",
+            "item_text": "", "keying": "positive",
+            "evidence_type": "UNKNOWN", "confidence": "unknown", "status": "unscored",
+        }]}
+        issues = validate_ipip_items(broken)
+        self.assertTrue(any("item_text must be non-empty" in str(issue) for issue in issues))
+
+    def test_rejects_invalid_keying(self):
+        broken = {"items": [{
+            "item_id": "O1_1", "domain": "openness", "facet_code": "O1",
+            "item_text": "Have a vivid imagination.", "keying": "sideways",
+            "evidence_type": "UNKNOWN", "confidence": "unknown", "status": "unscored",
+        }]}
+        issues = validate_ipip_items(broken)
+        self.assertTrue(any("keying must be" in str(issue) for issue in issues))
 
     def test_rejects_wrong_item_count(self):
         issues = validate_ipip_items({"items": []})

@@ -269,7 +269,10 @@ def validate_ocean_profile(doc: dict) -> list[ValidationIssue]:
 
 def validate_ipip_items(doc: dict) -> list[ValidationIssue]:
     issues: list[ValidationIssue] = []
-    required = ("item_id", "domain", "facet_code", "evidence_type", "confidence", "status")
+    required = (
+        "item_id", "domain", "facet_code", "item_text", "keying",
+        "evidence_type", "confidence", "status",
+    )
     seen_ids: set = set()
     for record in doc.get("items", []):
         context = f"ipip_neo_120.json[{record.get('item_id', '?')}]"
@@ -281,6 +284,10 @@ def validate_ipip_items(doc: dict) -> list[ValidationIssue]:
         expected_domain = FACET_DOMAIN.get(record.get("facet_code"))
         if expected_domain is not None and expected_domain != record.get("domain"):
             issues.append(ValidationIssue(context, "domain does not match facet_code"))
+        if not record.get("item_text"):
+            issues.append(ValidationIssue(context, "item_text must be non-empty"))
+        if record.get("keying") not in ("positive", "negative"):
+            issues.append(ValidationIssue(context, "keying must be 'positive' or 'negative'"))
         if "evidence_type" in record and "confidence" in record:
             issues.extend(_validate_evidence_confidence(
                 record["evidence_type"], record["confidence"], context,

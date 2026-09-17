@@ -143,6 +143,28 @@
       "source_type": "official_record",
       "primary_or_secondary": "primary",
       "notes": "Posthumous pardon for the 1952 conviction, following the 'Alan Turing law' campaign."
+    },
+    {
+      "source_id": "S014",
+      "title": "IPIP representations of the 30 NEO-PI-R facet scales (item text)",
+      "author": "International Personality Item Pool (IPIP)",
+      "date": "accessed 2026-09-16",
+      "publisher": "International Personality Item Pool",
+      "identifier": "https://ipip.ori.org/30FacetNEO-PI-RItems.htm",
+      "source_type": "website",
+      "primary_or_secondary": "primary",
+      "notes": "Official public-domain repository page listing the exact item wording and keying (+/-) used by this project's ipip_neo_120.json. Spot-checked against S015's independently published examples (see S015's notes) rather than trusted from a single source alone."
+    },
+    {
+      "source_id": "S015",
+      "title": "Assessing the Structure of the Five Factor Model of Personality (IPIP-NEO-120) in the Public Domain",
+      "author": "Petri J. Kajonius and John A. Johnson",
+      "date": "2019",
+      "publisher": "Europe's Journal of Psychology, vol. 15, no. 2, pp. 260-275",
+      "identifier": null,
+      "source_type": "published_paper",
+      "primary_or_secondary": "secondary",
+      "notes": "Cites and discusses Johnson (2014)'s original IPIP-NEO-120 development paper (Journal of Research in Personality, vol. 51, pp. 78-89 per web search; not independently re-verified against the physical journal). Table 1's example items ('Love to read challenging material' / O5, 'Work hard' / C4, 'Worry about things' / N1) were used in this project to cross-check S014's item text and confirmed to match exactly."
     }
   ]
 }
