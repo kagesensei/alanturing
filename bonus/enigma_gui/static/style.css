@@ -1,0 +1,114 @@
+:root {
+  color-scheme: light dark;
+  --fg: #1a1a1a;
+  --bg: #f7f5f0;
+  --accent: #7a1f1f;
+  --border: #d8d2c4;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #eae6da;
+    --bg: #16140f;
+    --accent: #d98c8c;
+    --border: #3a362b;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 1.5rem;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Courier New", Consolas, monospace;
+  line-height: 1.5;
+}
+
+main {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+h1 {
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  opacity: 0.75;
+  margin-top: 0;
+}
+
+.subtitle a {
+  color: var(--accent);
+}
+
+.error {
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+fieldset {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+legend {
+  padding: 0 0.5rem;
+  font-weight: bold;
+}
+
+label {
+  display: inline-block;
+  margin: 0.25rem 1rem 0.25rem 0;
+}
+
+select,
+input[type="text"] {
+  display: block;
+  margin-top: 0.25rem;
+  font-family: inherit;
+  padding: 0.25rem;
+}
+
+textarea {
+  width: 100%;
+  font-family: inherit;
+  padding: 0.5rem;
+}
+
+button {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.result {
+  margin-top: 2rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+.ciphertext {
+  font-size: 1.4rem;
+  letter-spacing: 0.15rem;
+  word-break: break-all;
+}
+
+#rotor-chart {
+  width: 100%;
+  min-height: 320px;
+}

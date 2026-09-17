@@ -132,6 +132,11 @@ class EnigmaMachine:
     def __init__(self, settings: EnigmaSettings):
         if len(settings.rotor_names) != 3:
             raise ValueError("exactly three rotors are required (left, middle, right)")
+        if len(set(settings.rotor_names)) != 3:
+            raise ValueError(
+                f"rotors must be distinct (a real Enigma had only one of each): "
+                f"{settings.rotor_names}"
+            )
         self.rotors = [
             Rotor(name, ring, start)
             for name, ring, start in zip(

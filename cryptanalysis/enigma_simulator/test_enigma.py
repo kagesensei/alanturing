@@ -69,6 +69,10 @@ class TestEnigmaMachine(unittest.TestCase):
         with self.assertRaises(ValueError):
             EnigmaMachine(EnigmaSettings(rotor_names=("I", "II")))
 
+    def test_rejects_duplicate_rotors(self):
+        with self.assertRaises(ValueError):
+            EnigmaMachine(EnigmaSettings(rotor_names=("I", "I", "III")))
+
     def test_known_reference_vector(self):
         # Rotors I,II,III / reflector B / ring AAA / start AAA / no plugboard:
         # a widely published Enigma I reference test vector.

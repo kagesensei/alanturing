@@ -31,9 +31,11 @@ source .venv/Scripts/activate
 source .venv/bin/activate
 ```
 
-Each project folder is self-contained (standard library only so far) — with
-the venv active, `cd` into a project directory and run its script or
-`python -m unittest -v` directly.
+Each project folder is self-contained (standard library only, except a
+few app-style projects like `bonus/enigma_gui` that pin their own extra
+dependencies in a project-local `requirements.txt`) — with the venv
+active, `cd` into a project directory, `pip install -r requirements.txt`
+if one's present, and run its script or `python -m unittest -v` directly.
 
 ## Hugging Face
 
@@ -65,5 +67,5 @@ Any models, datasets, or spaces published from this project are tracked in
 
 ### Bonus Projects & Reflections
 - [ ] Turing Test Simulator (simple chat-based exploration of the Turing Test)
-- [ ] Interactive Enigma GUI (desktop or web front-end for the Enigma simulator)
+- [x] [Interactive Enigma GUI](bonus/enigma_gui) (Flask web front-end for the Enigma simulator)
 - [x] [`historical_notes.md`](historical_notes.md) — personal reflections and inspirations behind this project

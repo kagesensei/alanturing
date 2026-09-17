@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Enigma Machine</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+</head>
+<body>
+  <main>
+    <h1>Enigma Machine</h1>
+    <p class="subtitle">
+      An interactive front-end for the
+      <a href="https://github.com/kagesensei/alanturing/tree/main/cryptanalysis/enigma_simulator">enigma_simulator</a>
+      engine.
+    </p>
+
+    {% if error %}
+      <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <form method="post" action="{{ url_for('encrypt') }}" class="settings">
+      <fieldset>
+        <legend>Rotors (left &rarr; right)</legend>
+        {% for slot in [1, 2, 3] %}
+          <label>
+            Rotor {{ slot }}
+            <select name="rotor{{ slot }}">
+              {% for choice in rotor_choices %}
+                <option value="{{ choice }}"
+                  {% if form and form.get('rotor' ~ slot) == choice %}selected{% endif %}>
+                  {{ choice }}
+                </option>
+              {% endfor %}
+            </select>
+          </label>
+          <label>
+            Ring
+            <select name="ring{{ slot }}">
+              {% for letter in alphabet %}
+                <option value="{{ letter }}"
+                  {% if form and form.get('ring' ~ slot) == letter %}selected{% endif %}>
+                  {{ letter }}
+                </option>
+              {% endfor %}
+            </select>
+          </label>
+          <label>
+            Start
+            <select name="start{{ slot }}">
+              {% for letter in alphabet %}
+                <option value="{{ letter }}"
+                  {% if form and form.get('start' ~ slot) == letter %}selected{% endif %}>
+                  {{ letter }}
+                </option>
+              {% endfor %}
+            </select>
+          </label>
+        {% endfor %}
+      </fieldset>
+
+      <fieldset>
+        <legend>Reflector &amp; plugboard</legend>
+        <label>
+          Reflector
+          <select name="reflector">
+            {% for choice in reflector_choices %}
+              <option value="{{ choice }}"
+                {% if form and form.get('reflector') == choice %}selected{% endif %}>
+                {{ choice }}
+              </option>
+            {% endfor %}
+          </select>
+        </label>
+        <label>
+          Plugboard pairs
+          <input type="text" name="plugboard" placeholder="AB CD EF"
+                 value="{{ form.get('plugboard', '') if form else '' }}">
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Message</legend>
+        <textarea name="message" rows="4"
+                  placeholder="Type a message to encrypt...">{{ form.get('message', '') if form else '' }}</textarea>
+      </fieldset>
+
+      <button type="submit">Run through the Enigma</button>
+    </form>
+
+    {% if result %}
+      <section class="result">
+        <h2>Ciphertext</h2>
+        <p class="ciphertext">{{ result.ciphertext }}</p>
+
+        <h2>Rotor positions as you type</h2>
+        <div id="rotor-chart"></div>
+        <script>
+          const rotorPositions = {{ result.rotor_positions | tojson }};
+          const letters = Array.from({length: rotorPositions.length}, (_, i) => i + 1);
+          const traces = [0, 1, 2].map((rotorIndex) => ({
+            x: letters,
+            y: rotorPositions.map((row) => row[rotorIndex]),
+            mode: "lines+markers",
+            name: `Rotor ${rotorIndex + 1}`,
+          }));
+          Plotly.newPlot("rotor-chart", traces, {
+            xaxis: {title: "Letter position in message"},
+            yaxis: {title: "Rotor position (0 = A)", range: [0, 25]},
+            margin: {t: 20},
+          }, {responsive: true});
+        </script>
+      </section>
+    {% endif %}
+  </main>
+</body>
+</html>
