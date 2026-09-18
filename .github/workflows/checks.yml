@@ -29,3 +29,5 @@ jobs:
           -r bonus/enigma_gui/requirements.txt
       - name: Run all project suites (including optional backends)
         run: python -m unittest discover -v
+      - name: Enforce reviewed lint policy
+        run: python tools/run_lint.py

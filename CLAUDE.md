@@ -119,6 +119,12 @@ Python:
   boilerplate (`Direction` enum, `TMResult`/`Transition` types) is
   intentionally repeated rather than factored into a shared dependency.
 
+- The repository-wide lint command is `python tools/run_lint.py`. It treats
+  every non-informational finding as a failure except the TM duplication
+  above and exact reviewed blocks in `tools/lint_duplicates.json`. See `tools/README.md`
+  for the narrowly scoped additional contract/fixture exceptions; new
+  duplicate blocks require review, not blanket suppression.
+
 ## Historical persona guidance
 
 For all work under `persona/alan_turing/`:

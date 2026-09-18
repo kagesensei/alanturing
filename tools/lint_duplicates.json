@@ -1,0 +1,51 @@
+{
+  "d1b264a6499aece5950e23c21ee4534c5b8071e37291ba7adc2b2e70870d3d13": {
+    "modules": [
+      "test_cirq_backend",
+      "test_qiskit_backend"
+    ],
+    "reason": "Equivalent contract or fixture scaffolding reviewed in tools/README.md."
+  },
+  "b7b75508b8d5a48845a53cf6d1ecc7782715100ac4b308b93288be083a2e3c16": {
+    "modules": [
+      "lorenz",
+      "lorenz_cracker"
+    ],
+    "reason": "Equivalent contract or fixture scaffolding reviewed in tools/README.md."
+  },
+  "f63c3cc16738028207ce0caf04149274bee81f09febe34803b9ce3f998e7e30c": {
+    "modules": [
+      "bombe",
+      "brute_force_cracker"
+    ],
+    "reason": "Equivalent contract or fixture scaffolding reviewed in tools/README.md."
+  },
+  "1d63f96e87021756b1f4cc0b2679814dd0bb3295e3f71b9e18a613646ec6a097": {
+    "modules": [
+      "bombe",
+      "brute_force_cracker"
+    ],
+    "reason": "Equivalent contract or fixture scaffolding reviewed in tools/README.md."
+  },
+  "0bd9e8d3bed601bdd0ffa2a3cb66f681a9131046c4acd2bc42d59b8747ba6a31": {
+    "modules": [
+      "test_automated_key_discovery",
+      "test_bombe"
+    ],
+    "reason": "Equivalent contract or fixture scaffolding reviewed in tools/README.md."
+  },
+  "fcdab02c125bc2fcf1472a126749285e54c508ac7091dadabb0bb36c03235f1f": {
+    "modules": [
+      "grovers_algorithm",
+      "qiskit_backend"
+    ],
+    "reason": "Equivalent contract or fixture scaffolding reviewed in tools/README.md."
+  },
+  "df0409db6f7be16152187f9353c8b02c6588e5c02ef40e89bbe7564a53088657": {
+    "modules": [
+      "cirq_backend",
+      "qiskit_backend"
+    ],
+    "reason": "Equivalent contract or fixture scaffolding reviewed in tools/README.md."
+  }
+}
