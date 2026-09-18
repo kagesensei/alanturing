@@ -119,6 +119,34 @@ Python:
   boilerplate (`Direction` enum, `TMResult`/`Transition` types) is
   intentionally repeated rather than factored into a shared dependency.
 
+## Historical persona guidance
+
+For all work under `persona/alan_turing/`:
+
+- Preserve the existing evidence/provenance taxonomy: `DIRECT`,
+  `CONTEMPORARY`, `SCHOLARLY`, `INFERRED`, and `UNKNOWN`, together with
+  their confidence labels and source references. Keep claim categories
+  derived by `persona_validation.classify_claim`; never promote inference
+  or persona extrapolation to historical fact.
+- Never replace `UNKNOWN` with speculation. Change an unknown claim only
+  when new supporting evidence justifies it, recording its provenance and
+  appropriate confidence. Keep unsupported claims explicitly unknown.
+- Never fabricate Turing quotations or preferences. Verify quotations
+  against their sources; keep generated dialogue explicitly labeled
+  `SIMULATED_DIALOGUE_NOT_A_HISTORICAL_QUOTE`.
+- Require sources for factual persona claims, using resolvable
+  `source_ids` pointing to records in `sources.json`. Sources must support
+  the specific claim, not merely mention Turing. Preserve rationales and
+  evidence labels for inferences.
+- Maintain each historical persona's `knowledge_cutoff_year` in its
+  knowledge, event references, and dialogue; do not introduce later events
+  or modern knowledge. Keep the modern `turing_a1` continuation explicitly
+  fictional.
+- Keep the historical persona optional and separate from `turing-a1`
+  domain specialization in cryptanalysis, computational reasoning, and
+  security-laboratory work. The technical model must remain usable
+  without historical roleplay.
+
 ## Roadmap tracking
 
 The root `README.md` has the authoritative roadmap checklist, grouped by
