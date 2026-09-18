@@ -79,6 +79,8 @@ class TuringMachine:
 
     def run(self, input_string: str, max_steps: int = MAX_STEPS_DEFAULT) -> TMResult:
         """Run the machine on `input_string` for at most `max_steps` steps."""
+        if isinstance(max_steps, bool) or not isinstance(max_steps, int) or max_steps < 0:
+            raise ValueError("max_steps must be a non-negative integer")
         tape: dict[int, str] = dict(enumerate(input_string))
         state = self.initial_state
         head = 0
@@ -101,10 +103,10 @@ class TuringMachine:
 
             steps += 1
 
-        halted = steps < max_steps
+        halted = (state, tape.get(head, self.blank_symbol)) not in self.transitions
         tape_str = self._tape_to_string(tape)
         return TMResult(
-            accepted=state in self.accept_states,
+            accepted=halted and state in self.accept_states,
             final_state=state,
             tape=tape_str,
             value=tape_str.count("1"),

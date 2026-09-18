@@ -144,6 +144,26 @@ def _next_generation(
     return next_population
 
 
+def _validate_search_parameters(
+    population_size, generations, mutation_rate, elite_count, tournament_size,
+) -> None:
+    for name, value, minimum in (
+        ("population_size", population_size, 2), ("generations", generations, 0),
+        ("elite_count", elite_count, 0), ("tournament_size", tournament_size, 1),
+    ):
+        if isinstance(value, bool) or not isinstance(value, int) or value < minimum:
+            raise ValueError(f"{name} must be an integer >= {minimum}")
+    if elite_count >= population_size:
+        raise ValueError("elite_count must be less than population_size")
+    if tournament_size > population_size:
+        raise ValueError("tournament_size must not exceed population_size")
+    if (
+        isinstance(mutation_rate, bool) or not isinstance(mutation_rate, (int, float))
+        or not 0 <= mutation_rate <= 1
+    ):
+        raise ValueError("mutation_rate must be a finite number in [0, 1]")
+
+
 def crack_substitution_cipher(
     ciphertext: str,
     *,
@@ -157,12 +177,11 @@ def crack_substitution_cipher(
     """Evolve a population of candidate substitution keys to decrypt
     `ciphertext`, returning the best key/decryption found.
     """
-    if not ciphertext.strip():
-        raise ValueError("ciphertext must be non-empty")
-    if population_size < 2:
-        raise ValueError("population_size must be at least 2")
-    if not 0 <= elite_count < population_size:
-        raise ValueError("elite_count must be in [0, population_size)")
+    if not isinstance(ciphertext, str) or not any(char in ALPHABET for char in ciphertext.upper()):
+        raise ValueError("ciphertext must contain at least one A-Z letter")
+    _validate_search_parameters(
+        population_size, generations, mutation_rate, elite_count, tournament_size,
+    )
 
     active_rng = rng if rng is not None else random.Random()
     population = [_random_key(active_rng) for _ in range(population_size)]

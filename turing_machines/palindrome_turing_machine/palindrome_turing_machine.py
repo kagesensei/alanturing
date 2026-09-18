@@ -59,6 +59,8 @@ class PalindromeTuringMachine:
     """A deterministic single-tape palindrome checker over {0, 1}."""
 
     def __init__(self, max_steps: int = MAX_STEPS_DEFAULT):
+        if isinstance(max_steps, bool) or not isinstance(max_steps, int) or max_steps < 0:
+            raise ValueError("max_steps must be a non-negative integer")
         self.transitions = _build_transitions()
         self.max_steps = max_steps
 
@@ -89,9 +91,9 @@ class PalindromeTuringMachine:
 
             steps += 1
 
-        halted = steps < self.max_steps
+        halted = (state, tape.get(head, "_")) not in self.transitions
         return TMResult(
-            is_palindrome=state == "accept",
+            is_palindrome=halted and state == "accept",
             final_state=state,
             steps=steps,
             halted=halted,

@@ -131,6 +131,8 @@ class UniversalTuringMachine:
         return f"{description}##{left}[{new_state}:{new_symbol}]{right}"
 
     def run(self, tape: str, max_steps: int = 100_000) -> UTMResult:
+        if isinstance(max_steps, bool) or not isinstance(max_steps, int) or max_steps < 0:
+            raise ValueError("max_steps must be a non-negative integer")
         steps = 0
         current = tape
         while steps < max_steps:
@@ -140,16 +142,17 @@ class UniversalTuringMachine:
             current = next_tape
             steps += 1
 
-        _, config = current.split("##", 1)
+        description, config = current.split("##", 1)
         left, state, symbol, right = _split_config(config)
+        halted = _find_rule(description, state, symbol) is None
         tape_str = (left + symbol + right).strip(self.blank_symbol) or self.blank_symbol
 
         return UTMResult(
-            accepted=state in self.accept_states,
+            accepted=halted and state in self.accept_states,
             final_state=state,
             tape=tape_str,
             steps=steps,
-            halted=steps < max_steps,
+            halted=halted,
         )
 
 

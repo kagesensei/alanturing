@@ -45,6 +45,8 @@ class TuringMachine:
         self.blank_symbol = blank_symbol
 
     def run(self, input_string: str, max_steps: int = 100_000) -> TMResult:
+        if isinstance(max_steps, bool) or not isinstance(max_steps, int) or max_steps < 0:
+            raise ValueError("max_steps must be a non-negative integer")
         tape: dict[int, str] = defaultdict(lambda: self.blank_symbol)
         for i, symbol in enumerate(input_string):
             tape[i] = symbol
@@ -70,9 +72,9 @@ class TuringMachine:
 
             steps += 1
 
-        halted = steps < max_steps
+        halted = (state, tape.get(head, self.blank_symbol)) not in self.transitions
         return TMResult(
-            accepted=state in self.accept_states,
+            accepted=halted and state in self.accept_states,
             final_state=state,
             tape=self._tape_to_string(tape),
             steps=steps,

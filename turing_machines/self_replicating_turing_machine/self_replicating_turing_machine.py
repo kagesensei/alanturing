@@ -84,6 +84,8 @@ class TapeCopierTuringMachine:
 
     def run(self, input_string: str, max_steps: int = MAX_STEPS_DEFAULT) -> TMResult:
         """Run the copier on a `w#` tape for at most `max_steps` steps."""
+        if isinstance(max_steps, bool) or not isinstance(max_steps, int) or max_steps < 0:
+            raise ValueError("max_steps must be a non-negative integer")
         if input_string.count(DELIMITER) != 1:
             raise ValueError(f"input must contain exactly one {DELIMITER!r} delimiter")
         if any(symbol not in "01" for symbol in input_string.replace(DELIMITER, "")):
@@ -113,9 +115,9 @@ class TapeCopierTuringMachine:
 
             steps += 1
 
-        halted = steps < max_steps
+        halted = (state, tape.get(head, self.blank_symbol)) not in self.transitions
         return TMResult(
-            accepted=state in self.accept_states,
+            accepted=halted and state in self.accept_states,
             tape=self._tape_to_string(tape),
             steps=steps,
             halted=halted,
