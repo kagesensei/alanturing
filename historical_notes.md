@@ -140,6 +140,7 @@ work.
   standalone fine-tuning repo, not here. Once it exists, this project's
   Turing Test Simulator (Bonus Projects) consumes the published model
   rather than containing any training code itself.
-- The rest of the roadmap (Advanced Concepts, the remaining Bonus items)
-  is still where the real work is. This file is reflection, not a
-  substitute for it.
+- The computational and cryptanalysis roadmap implementations are complete.
+  Current work focuses on reproducible evaluation and the remaining Turing
+  Test Simulator capstone. This file is reflection, not a substitute for
+  working implementations and measured results.

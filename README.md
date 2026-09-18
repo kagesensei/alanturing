@@ -1,7 +1,7 @@
 # Alan Turing: A Tribute in Code
 As a Cybersecurity Data Scientist I decided it's overdue to start sharing code publicly to showcase my skills. I decided to start with looking at the work of Alan Turing.  As a child, I was captivated by the genius of Alan Turing—his groundbreaking work in cryptanalysis, his vision of machine intelligence, and his profound contributions to modern computing. The Turing Test sparked my early curiosity about artificial intelligence, while his role in breaking the Enigma cipher showed me the power of mathematical logic in the real world.
 
-This repository is a proof of concept for his work, a homage to the man who laid the foundation for modern computing and cybersecurity. It will feature Python implementations of:
+This repository is a working educational collection, a homage to the man who laid the foundation for modern computing and cybersecurity. It includes Python implementations of:
 
 - Turing Machine concepts, including a Universal Turing Machine.
 
@@ -12,6 +12,34 @@ This repository is a proof of concept for his work, a homage to the man who laid
 By recreating and exploring these systems, I hope to keep Turing’s legacy alive—both as a pioneer of theoretical computer science and as a hero of World War II.
 
 For those who wish to understand computation from its origins, this repository is both a study and a tribute.
+
+## Start here
+
+The original roadmap has 17 of 18 main items implemented. The Turing Test
+Simulator is the remaining capstone; its evidence-tagged persona data is in
+place. Each implementation has tests, a runnable example, and its own README.
+
+| Explore | Run from the root after setup | What to look for |
+| --- | --- | --- |
+| Computation | `python turing_machines/basic_simulator/turing_machine.py` | Binary increment and complement through tape transitions |
+| Cryptanalysis | `python cryptanalysis/automated_key_discovery/automated_key_discovery.py` | Rotor and plugboard recovery with `fully_verified=True` |
+| Self-replication | `python turing_machines/self_replicating_turing_machine/self_replicating_turing_machine.py` | A 1,280-bit description copied in 4,922,883 machine steps |
+| Quantum concepts | `python advanced_concepts/quantum_cryptanalysis/shors_algorithm.py` | Toy factoring with reported quantum/classical paths |
+| Interactive Enigma | `python bonus/enigma_gui/app.py` | Open `http://127.0.0.1:5000` to configure the machine and watch rotor positions |
+
+For example, the key-discovery demo reports:
+
+```text
+rotors=('III', 'V', 'I') start=('Q', 'E', 'L')
+plugboard_pairs=(('B', 'Z'), ('H', 'Y'), ('K', 'P'), ('Q', 'X'))
+fully_verified=True
+```
+
+These are bounded educational implementations. Enigma search assumes known
+ring settings; Lorenz recovery assumes known plaintext and other key material;
+quantum statevectors only support small demonstrations. The genetic codebreaker
+works on its demo but underperforms frequency analysis on the current
+[held-out benchmark](advanced_concepts/genetic_codebreaker/BENCHMARK.md).
 
 ## Setup
 
@@ -31,11 +59,36 @@ source .venv/Scripts/activate
 source .venv/bin/activate
 ```
 
+On macOS/Linux, create the environment with `python3.12 -m venv .venv`.
+
 Each project folder is self-contained (standard library only, except a
 few app-style projects like `bonus/enigma_gui` that pin their own extra
 dependencies in a project-local `requirements.txt`) — with the venv
 active, `cd` into a project directory, `pip install -r requirements.txt`
 if one's present, and run its script or `python -m unittest -v` directly.
+
+## Verify the collection
+
+For all existing project tests, install the development tools and optional
+runtime backends in the activated environment:
+
+```text
+python -m pip install -r requirements-dev.txt -r bonus/enigma_gui/requirements.txt -r advanced_concepts/quantum_cryptanalysis/requirements.txt
+python -m unittest discover -v
+python tools/run_lint.py
+```
+
+Root discovery runs each project's actual tests in a separate interpreter.
+The final count is the number of project suites; each suite also prints its
+individual test count. Missing dependencies and skipped tests fail the check.
+The [CI workflow](.github/workflows/checks.yml) runs tests and lint on Linux
+and Windows. See [tools/README.md](tools/README.md) for the reviewed lint policy.
+
+To reproduce the slower cryptanalysis experiment separately:
+
+```text
+python advanced_concepts/genetic_codebreaker/benchmark.py
+```
 
 ## Hugging Face
 
