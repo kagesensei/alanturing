@@ -159,14 +159,16 @@ validator actually rejects a synthetic violation" test.
 
 ## Roadmap status
 
-This is groundwork for the (still unimplemented) **Turing Test Simulator**
-bonus item, not the simulator itself -- see the root
-[README](../../README.md)'s roadmap, which correctly leaves that item
-unchecked.
+This is the source-of-truth groundwork consumed by the
+[Turing Test Simulator](../../bonus/turing_test_simulator). The simulator now
+supports conservative evidence-scoped conversations and a configurable model
+endpoint. This directory remains persona data and validation, separate from
+the model's technical specialization and training.
 
 ## Phase 2 (not yet started)
 
 Systematic source-by-source evidence collection; IPIP-NEO-120 item-text
 transcription and evidence-backed response reconstruction (only where
 supported); facet-level qualitative-to-quantitative writeups;
-dialogue/persona generation; integration with the Turing Test Simulator.
+free-form dialogue/persona generation. Initial extractive integration with the
+Turing Test Simulator is complete; that does not complete the research work.

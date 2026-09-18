@@ -141,6 +141,7 @@ work.
   Turing Test Simulator (Bonus Projects) consumes the published model
   rather than containing any training code itself.
 - The computational and cryptanalysis roadmap implementations are complete.
-  Current work focuses on reproducible evaluation and the remaining Turing
-  Test Simulator capstone. This file is reflection, not a substitute for
+  The local Turing Test Simulator capstone is now implemented. Current work
+  focuses on reproducible evaluation and training its future turing-a1 backend.
+  This file is reflection, not a substitute for
   working implementations and measured results.

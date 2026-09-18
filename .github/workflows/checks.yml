@@ -27,6 +27,7 @@ jobs:
           python -m pip install -r requirements-dev.txt
           -r advanced_concepts/quantum_cryptanalysis/requirements.txt
           -r bonus/enigma_gui/requirements.txt
+          -r bonus/turing_test_simulator/requirements.txt
       - name: Run all project suites (including optional backends)
         run: python -m unittest discover -v
       - name: Enforce reviewed lint policy

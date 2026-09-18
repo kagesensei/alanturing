@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The imitation room · Turing Test Simulator</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><main>
+<p class="eyebrow">ALAN TURING · A TRIBUTE IN CODE</p>
+<h1>The imitation room</h1>
+<p class="lede">Ask a question. Read closely. Decide what makes an answer convincing.</p>
+<p class="notice">Backend: {{ backend }}. This is a learning exercise, not a scientific test of consciousness.</p>
+<section class="panel"><h2>Set the conversation</h2>
+<form id="setup"><div class="settings"><label>Voice
+<select id="persona"><option value="technical">Technical assistant · no historical persona</option>
+{% for persona in personas %}<option value="{{ persona.persona_id }}">{{ persona.label }}{% if persona.is_fictional %} · fictional modern continuation{% else %} · through {{ persona.knowledge_cutoff_year }}{% endif %}</option>{% endfor %}
+</select></label><label>Format<select id="kind"><option value="chat">Chat and inspect evidence</option>
+<option value="blind">Blind comparison · invite a human respondent</option></select></label></div>
+<p class="muted">Historical modes return evidence excerpts, not invented first-person quotations. Undated biographical claims are withheld from historical cutoffs. The modern continuation is explicitly fictional.</p>
+<button type="submit">Start session</button></form>
+<p id="invitation" hidden>Give this link to your human respondent in a separate browser tab: <a id="invite-link" target="_blank" rel="noreferrer">Open respondent room</a>. For a blind exercise, ask another person to answer.</p>
+</section>
+<section id="conversation" class="panel" hidden><h2>Conversation</h2>
+<div id="transcript" aria-live="polite"></div>
+<form id="ask"><label for="question">Your question</label><textarea id="question" maxlength="2000" rows="3" required placeholder="What did you publish about computable numbers?"></textarea>
+<button type="submit" id="send">Send question</button><span class="muted">Up to six rounds per session.</span></form>
+<form id="judge" hidden><h3>Which respondent is the machine?</h3>
+<label>My guess <select id="guess"><option>A</option><option>B</option></select></label>
+<label>Confidence (0–100%) <input id="confidence" type="number" min="0" max="100" value="50" required></label>
+<button type="submit">Record judgment and reveal</button></form>
+<p id="verdict"></p><a id="export">Download transcript (JSON)</a>
+</section><p id="status" role="status"></p>
+<footer>Historical responses: SIMULATED_DIALOGUE_NOT_A_HISTORICAL_QUOTE. Source records remain separate from model specialization. Sessions expire after two hours and disappear when the app restarts.</footer>
+</main><script src="{{ url_for('static', filename='judge.js') }}"></script></body></html>

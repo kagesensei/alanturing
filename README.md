@@ -15,9 +15,10 @@ For those who wish to understand computation from its origins, this repository i
 
 ## Start here
 
-The original roadmap has 17 of 18 main items implemented. The Turing Test
-Simulator is the remaining capstone; its evidence-tagged persona data is in
-place. Each implementation has tests, a runnable example, and its own README.
+All 18 main roadmap items have implementations, including the local Turing Test
+Simulator. Its configurable model connection is ready for a future turing-a1
+model; the default demo does not impersonate a trained model. Each implementation
+has tests, a runnable example, and its own README.
 
 | Explore | Run from the root after setup | What to look for |
 | --- | --- | --- |
@@ -26,6 +27,7 @@ place. Each implementation has tests, a runnable example, and its own README.
 | Self-replication | `python turing_machines/self_replicating_turing_machine/self_replicating_turing_machine.py` | A 1,280-bit description copied in 4,922,883 machine steps |
 | Quantum concepts | `python advanced_concepts/quantum_cryptanalysis/shors_algorithm.py` | Toy factoring with reported quantum/classical paths |
 | Interactive Enigma | `python bonus/enigma_gui/app.py` | Open `http://127.0.0.1:5000` to configure the machine and watch rotor positions |
+| The imitation room | `python bonus/turing_test_simulator/app.py` | Open `http://127.0.0.1:5001` for evidence-aware chat and a blind comparison |
 
 For example, the key-discovery demo reports:
 
@@ -73,7 +75,7 @@ For all existing project tests, install the development tools and optional
 runtime backends in the activated environment:
 
 ```text
-python -m pip install -r requirements-dev.txt -r bonus/enigma_gui/requirements.txt -r advanced_concepts/quantum_cryptanalysis/requirements.txt
+python -m pip install -r requirements-dev.txt -r bonus/enigma_gui/requirements.txt -r bonus/turing_test_simulator/requirements.txt -r advanced_concepts/quantum_cryptanalysis/requirements.txt
 python -m unittest discover -v
 python tools/run_lint.py
 ```
@@ -119,7 +121,7 @@ Any models, datasets, or spaces published from this project are tracked in
 - [x] [Genetic Algorithm for Code Breaking](advanced_concepts/genetic_codebreaker)
 
 ### Bonus Projects & Reflections
-- [ ] Turing Test Simulator (simple chat-based exploration of the Turing Test)
+- [x] [Turing Test Simulator](bonus/turing_test_simulator) — local chat, evidence-scoped personas, human/model comparison, and configurable model endpoint; turing-a1 training remains separate work
   - [x] Groundwork: [Alan Turing evidence-based historical persona](persona/alan_turing) — provenance/confidence-tagged source-of-truth data (not the simulator itself)
 - [x] [Interactive Enigma GUI](bonus/enigma_gui) (Flask web front-end for the Enigma simulator)
 - [x] [`historical_notes.md`](historical_notes.md) — personal reflections and inspirations behind this project
