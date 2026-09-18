@@ -1,0 +1,17 @@
+{
+  "provenance": "Original synthetic English passages authored for this benchmark, not historical quotations. Held out from the existing demo and fitness dictionary design; do not tune on these results.",
+  "cases": [
+    {
+      "id": "observatory",
+      "text": "At sunset the observatory shutters opened. A patient astronomer adjusted the telescope while distant clouds drifted across the horizon. Several measurements disagreed, so she repeated the observations before recording her conclusion."
+    },
+    {
+      "id": "garden",
+      "text": "Rain collected beneath the greenhouse windows. The gardener carried seedlings outside and inspected their roots. Tomorrow the neighbours would bring fresh compost and repair the damaged fence."
+    },
+    {
+      "id": "harbor_unspaced",
+      "text": "BEFOREDAWNTHEHARBORPILOTCHECKEDTHETIDESANDSIGNALLEDTHEWAITINGVESSELTHICKFOGCOVEREDTHECHANNELSOTHESAILORSREDUCEDSPEEDUNTILTHELIGHTHOUSEBECAMEVISIBLE"
+    }
+  ]
+}

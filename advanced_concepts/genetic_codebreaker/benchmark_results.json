@@ -1,0 +1,273 @@
+{
+  "python": "3.12.1",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "corpus_provenance": "Original synthetic English passages authored for this benchmark, not historical quotations. Held out from the existing demo and fitness dictionary design; do not tune on these results.",
+  "parameters": {
+    "population_size": 200,
+    "generations": 300,
+    "mutation_rate": 0.15,
+    "elite_count": 10,
+    "tournament_size": 5
+  },
+  "dictionary_size": 164,
+  "trials": [
+    {
+      "case": "observatory",
+      "key_seed": 17,
+      "search_seed": null,
+      "method": "frequency",
+      "letter_accuracy": 0.20100502512562815,
+      "exact_match": false,
+      "seconds": 7.840001489967108e-05,
+      "recovered_text": "NA TLHTEA ARE IWTEOGNAIOV TRLAAEOT IMEHES. N MNADEHA NTAOIHIFEO NSJLTAES ARE AEUETCIME BRDUE SDTANHA CUILST SODPAES NCOITT ARE RIODKIH. TEGEONU FENTLOEFEHAT SDTNYOEES, TI TRE OEMENAES ARE IWTEOGNADIHT WEPIOE OECIOSDHY REO CIHCULTDIH."
+    },
+    {
+      "case": "observatory",
+      "key_seed": 17,
+      "search_seed": 0,
+      "method": "genetic",
+      "letter_accuracy": 0.1658291457286432,
+      "exact_match": false,
+      "seconds": 5.934124599996721,
+      "recovered_text": "TO MRIMEO ONE YFMEWCTOYWV MNROOEWM YLEIEA. T LTOSEIO TMOWYIYUEW TAKRMOEA ONE OEDEMHYLE JNSDE ASMOTIO HDYRAM AWSGOEA THWYMM ONE NYWSBYI. MECEWTD UETMRWEUEIOM ASMTPWEEA, MY MNE WELETOEA ONE YFMEWCTOSYIM FEGYWE WEHYWASIP NEW HYIHDRMSYI."
+    },
+    {
+      "case": "observatory",
+      "key_seed": 17,
+      "search_seed": 1,
+      "method": "genetic",
+      "letter_accuracy": 0.02512562814070352,
+      "exact_match": false,
+      "seconds": 6.185514899989357,
+      "recovered_text": "NO BRIBTO OUT EWBTAMNOEAK BUROOTAB ECTITS. N CNOHTIO NBOAEIEFTA NSPRBOTS OUT OTLTBDECT JUHLT SHBONIO DLERSB SAHGOTS NDAEBB OUT UEAHVEI. BTMTANL FTNBRATFTIOB SHBNYATTS, BE BUT ATCTNOTS OUT EWBTAMNOHEIB WTGEAT ATDEASHIY UTA DEIDLRBHEI."
+    },
+    {
+      "case": "observatory",
+      "key_seed": 17,
+      "search_seed": 2,
+      "method": "genetic",
+      "letter_accuracy": 0.09045226130653267,
+      "exact_match": false,
+      "seconds": 5.9407948999723885,
+      "recovered_text": "IL GDSGTL LET OMGTAFILOAV GEDLLTAG OUTSTN. I UILHTSL IGLAOSOWTA INJDGLTN LET LTCTGROUT KEHCT NHGLISL RCODNG NAHYLTN IRAOGG LET EOAHBOS. GTFTAIC WTIGDATWTSLG NHGIPATTN, GO GET ATUTILTN LET OMGTAFILHOSG MTYOAT ATROANHSP ETA ROSRCDGHOS."
+    },
+    {
+      "case": "observatory",
+      "key_seed": 29,
+      "search_seed": null,
+      "method": "frequency",
+      "letter_accuracy": 0.25125628140703515,
+      "exact_match": false,
+      "seconds": 7.329997606575489e-05,
+      "recovered_text": "NA TCHTEA ADE OFTEIGNAOIB TDCAAEIT OMEHES. N MNAREHA NTAIOHOWEI NSVCTAES ADE AEUETLOME JDRUE SRTANHA LUOCST SIRPAES NLIOTT ADE DOIRKOH. TEGEINU WENTCIEWEHAT SRTNYIEES, TO TDE IEMENAES ADE OFTEIGNAROHT FEPOIE IELOISRHY DEI LOHLUCTROH."
+    },
+    {
+      "case": "observatory",
+      "key_seed": 29,
+      "search_seed": 0,
+      "method": "genetic",
+      "letter_accuracy": 0.05025125628140704,
+      "exact_match": false,
+      "seconds": 5.984017999988282,
+      "recovered_text": "IS WROWYS SAY EUWYTFISETB WARSSYTW ECYOYN. I CISHYOS IWSTEOEMYT INKRWSYN SAY SYLYWDECY VAHLY NHWSIOS DLERNW NTHPSYN IDTEWW SAY AETHJEO. WYFYTIL MYIWRTYMYOSW NHWIGTYYN, WE WAY TYCYISYN SAY EUWYTFISHEOW UYPETY TYDETNHOG AYT DEODLRWHEO."
+    },
+    {
+      "case": "observatory",
+      "key_seed": 29,
+      "search_seed": 1,
+      "method": "genetic",
+      "letter_accuracy": 0.09045226130653267,
+      "exact_match": false,
+      "seconds": 5.788516599975992,
+      "recovered_text": "MY GHIGTY YET OUGTACMYOAK GEHYYTAG OLTITN. M LMYSTIY MGYAOIOWTA MNJHGYTN YET YTDTGROLT VESDT NSGYMIY RDOHNG NASPYTN MRAOGG YET EOASBOI. GTCTAMD WTMGHATWTIYG NSGMFATTN, GO GET ATLTMYTN YET OUGTACMYSOIG UTPOAT ATROANSIF ETA ROIRDHGSOI."
+    },
+    {
+      "case": "observatory",
+      "key_seed": 29,
+      "search_seed": 2,
+      "method": "genetic",
+      "letter_accuracy": 0.4824120603015075,
+      "exact_match": false,
+      "seconds": 6.332142800005386,
+      "recovered_text": "AS TLITES SHE OWTERFASORK THLSSERT OMEIEN. A MASDEIS ATSROIOGER ANJLTSEN SHE SEUETCOME VHDUE NDTSAIS CUOLNT NRDYSEN ACROTT SHE HORDBOI. TEFERAU GEATLREGEIST NDTAPREEN, TO THE REMEASEN SHE OWTERFASDOIT WEYORE RECORNDIP HER COICULTDOI."
+    },
+    {
+      "case": "garden",
+      "key_seed": 17,
+      "search_seed": null,
+      "method": "frequency",
+      "letter_accuracy": 0.3558282208588957,
+      "exact_match": false,
+      "seconds": 8.490000618621707e-05,
+      "recovered_text": "TDHN CAWWECIEO FENEDIR IRE LTEENRAUSE MHNOAMS. IRE LDTOENET CDTTHEO SEEOWHNLS AUISHOE DNO HNSGECIEO IREHT TAAIS. IAYATTAM IRE NEHLRFAUTS MAUWO FTHNL PTESR CAYGASI DNO TEGDHT IRE ODYDLEO PENCE."
+    },
+    {
+      "case": "garden",
+      "key_seed": 17,
+      "search_seed": 0,
+      "method": "genetic",
+      "letter_accuracy": 0.1165644171779141,
+      "exact_match": false,
+      "seconds": 5.416490200004773,
+      "recovered_text": "AHRI COUUTCLTS GTITHLE LET DATTIEOWNT MRISOMN. LET DHASTITA CHAARTS NTTSURIDN OWLNRST HIS RINYTCLTS LETRA AOOLN. LOFOAAOM LET ITRDEGOWAN MOWUS GARID PATNE COFYONL HIS ATYHRA LET SHFHDTS PTICT."
+    },
+    {
+      "case": "garden",
+      "key_seed": 17,
+      "search_seed": 1,
+      "method": "genetic",
+      "letter_accuracy": 0.0,
+      "exact_match": false,
+      "seconds": 5.2195905999979,
+      "recovered_text": "ECSA DIMMTDOTN GTATCOU OUT RETTAUIWHT LSANILH. OUT RCENTATE DCEESTN HTTNMSARH IWOHSNT CAN SAHFTDOTN OUTSE EIIOH. OIYIEEIL OUT ATSRUGIWEH LIWMN GESAR PETHU DIYFIHO CAN ETFCSE OUT NCYCRTN PTADT."
+    },
+    {
+      "case": "garden",
+      "key_seed": 17,
+      "search_seed": 2,
+      "method": "genetic",
+      "letter_accuracy": 0.08588957055214724,
+      "exact_match": false,
+      "seconds": 5.177782299986575,
+      "recovered_text": "ERHI DTWWNDCNO YNINRCA CAN LENNIATUSN MHIOTMS. CAN LREONINE DREEHNO SNNOWHILS TUCSHON RIO HISGNDCNO CANHE ETTCS. CTFTEETM CAN INHLAYTUES MTUWO YEHIL PENSA DTFGTSC RIO ENGRHE CAN ORFRLNO PNIDN."
+    },
+    {
+      "case": "garden",
+      "key_seed": 29,
+      "search_seed": null,
+      "method": "frequency",
+      "letter_accuracy": 0.18404907975460122,
+      "exact_match": false,
+      "seconds": 0.00010639999527484179,
+      "recovered_text": "TDSI LAUUELNEO YEIEDNR NRE CTEEIRAMHE WSIOAWH. NRE CDTOEIET LDTTSEO HEEOUSICH AMNHSOE DIO SIHGELNEO NREST TAANH. NAFATTAW NRE IESCRYAMTH WAMUO YTSIC PTEHR LAFGAHN DIO TEGDST NRE ODFDCEO PEILE."
+    },
+    {
+      "case": "garden",
+      "key_seed": 29,
+      "search_seed": 0,
+      "method": "genetic",
+      "letter_accuracy": 0.0,
+      "exact_match": false,
+      "seconds": 6.343839199980721,
+      "recovered_text": "EOSU HTMMDHADR FDUDOAN AND LEDDUNTWID CSURTCI. AND LOERDUDE HOEESDR IDDRMSULI TWAISRD OUR SUIGDHADR ANDSE ETTAI. ATYTEETC AND UDSLNFTWEI CTWMR FESUL PEDIN HTYGTIA OUR EDGOSE AND ROYOLDR PDUHD."
+    },
+    {
+      "case": "garden",
+      "key_seed": 29,
+      "search_seed": 1,
+      "method": "genetic",
+      "letter_accuracy": 0.06134969325153374,
+      "exact_match": false,
+      "seconds": 5.273258500004886,
+      "recovered_text": "AWHO DIMMTDLTN GTOTWLE LET RATTOEICST UHONIUS. LET RWANTOTA DWAAHTN STTNMHORS ICLSHNT WON HOSYTDLTN LETHA AIILS. LIFIAAIU LET OTHREGICAS UICMN GAHOR PATSE DIFYISL WON ATYWHA LET NWFWRTN PTODT."
+    },
+    {
+      "case": "garden",
+      "key_seed": 29,
+      "search_seed": 2,
+      "method": "genetic",
+      "letter_accuracy": 0.22085889570552147,
+      "exact_match": false,
+      "seconds": 5.209567499987315,
+      "recovered_text": "TWIO RACCERUEN YEOEWUS USE DTEEOSALHE MIONAMH. USE DWTNEOET RWTTIEN HEENCIODH ALUHINE WON IOHGERUEN USEIT TAAUH. UAFATTAM USE OEIDSYALTH MALCN YTIOD PTEHS RAFGAHU WON TEGWIT USE NWFWDEN PEORE."
+    },
+    {
+      "case": "harbor_unspaced",
+      "key_seed": 17,
+      "search_seed": null,
+      "method": "frequency",
+      "letter_accuracy": 0.17006802721088435,
+      "exact_match": false,
+      "seconds": 6.120000034570694e-05,
+      "recovered_text": "MEPHCESRBLATETRCMHCYONHADTEDGESATEAOSEIRLSIOULRNNESATEBROAOLUFEIIENATODGPHUDHFECESATEDTRLLENIHATEIRONHCICESWDESIYEESWLAONATENOUTATHWIEMEDRVEFOIOMNE"
+    },
+    {
+      "case": "harbor_unspaced",
+      "key_seed": 17,
+      "search_seed": 0,
+      "method": "genetic",
+      "letter_accuracy": 0.1836734693877551,
+      "exact_match": false,
+      "seconds": 3.9707404999935534,
+      "recovered_text": "UEGHCESRBLATETRCUHCPONHADTEDYESATEAOSEIRLSIOMLRNNESATEBROAOLMWEIIENATODYGHMDHWECESATEDTRLLENIHATEIRONHCICESFDESIPEESFLAONATENOMTATHFIEUEDRVEWOIOUNE"
+    },
+    {
+      "case": "harbor_unspaced",
+      "key_seed": 17,
+      "search_seed": 1,
+      "method": "genetic",
+      "letter_accuracy": 0.25170068027210885,
+      "exact_match": false,
+      "seconds": 4.017287099995883,
+      "recovered_text": "UEYRCESHGLTAEAHCURCBONRTDAEDPESTAETOSEIHLSIOMLHNNESTAEGHOTOLMWEIIENTAODPYRMDRWECESTAEDAHLLENIRTAEIHONRCICESFDESIBEESFLTONTAENOMATARFIEUEDHVEWOIOUNE"
+    },
+    {
+      "case": "harbor_unspaced",
+      "key_seed": 17,
+      "search_seed": 2,
+      "method": "genetic",
+      "letter_accuracy": 0.25170068027210885,
+      "exact_match": false,
+      "seconds": 3.940472400019644,
+      "recovered_text": "MEPHCESRYDTAEARCMHCBONHTLAELGESTAETOSEIRDSIOUDRNNESTAEYROTODUWEIIENTAOLGPHULHWECESTAELARDDENIHTAEIRONHCICESFLESIBEESFDTONTAENOUATAHFIEMELRVEWOIOMNE"
+    },
+    {
+      "case": "harbor_unspaced",
+      "key_seed": 29,
+      "search_seed": null,
+      "method": "frequency",
+      "letter_accuracy": 0.17006802721088435,
+      "exact_match": false,
+      "seconds": 0.00010639999527484179,
+      "recovered_text": "UEBHCENRPLATETRCUHCYOSHADTEDGENATEAONEIRLNIOMLRSSENATEPROAOLMFEIIESATODGBHMDHFECENATEDTRLLESIHATEIROSHCICENWDENIYEENWLAOSATESOMTATHWIEUEDRVEFOIOUSE"
+    },
+    {
+      "case": "harbor_unspaced",
+      "key_seed": 29,
+      "search_seed": 0,
+      "method": "genetic",
+      "letter_accuracy": 0.25170068027210885,
+      "exact_match": false,
+      "seconds": 3.902521899988642,
+      "recovered_text": "MEYRCESHGDTAEAHCMRCBONRTLAELPESTAETOSEIHDSIOUDHNNESTAEGHOTODUWEIIENTAOLPYRULRWECESTAELAHDDENIRTAEIHONRCICESFLESIBEESFDTONTAENOUATARFIEMELHVEWOIOMNE"
+    },
+    {
+      "case": "harbor_unspaced",
+      "key_seed": 29,
+      "search_seed": 1,
+      "method": "genetic",
+      "letter_accuracy": 0.17006802721088435,
+      "exact_match": false,
+      "seconds": 3.8777507999911904,
+      "recovered_text": "UEYRCENHGDATETHCURCBOSRALTELPENATEAONEIHDNIOMDHSSENATEGHOAODMWEIIESATOLPYRMLRWECENATELTHDDESIRATEIHOSRCICENFLENIBEENFDAOSATESOMTATRFIEUELHVEWOIOUSE"
+    },
+    {
+      "case": "harbor_unspaced",
+      "key_seed": 29,
+      "search_seed": 2,
+      "method": "genetic",
+      "letter_accuracy": 0.17006802721088435,
+      "exact_match": false,
+      "seconds": 4.004440499993507,
+      "recovered_text": "UEBRCESHPDATETHCURCGONRALTELYESATEAOSEIHDSIOMDHNNESATEPHOAODMFEIIENATOLYBRMLRFECESATELTHDDENIRATEIHONRCICESWLESIGEESWDAONATENOMTATRWIEUELHVEFOIOUNE"
+    }
+  ],
+  "summary": {
+    "frequency": {
+      "trials": 6,
+      "mean_letter_accuracy": 0.22204577692798816,
+      "min_letter_accuracy": 0.17006802721088435,
+      "max_letter_accuracy": 0.3558282208588957,
+      "exact_recoveries": 0,
+      "mean_seconds": 8.509999800783892e-05
+    },
+    "genetic": {
+      "trials": 18,
+      "mean_letter_accuracy": 0.14822759746546074,
+      "min_letter_accuracy": 0.0,
+      "max_letter_accuracy": 0.4824120603015075,
+      "exact_recoveries": 0,
+      "mean_seconds": 5.139936294437373
+    }
+  }
+}

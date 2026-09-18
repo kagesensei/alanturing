@@ -28,6 +28,12 @@ gradient before any whole words decrypt correctly. That combination lets
 it recover the correct key even from ciphertext whose frequencies don't
 line up neatly with the English reference table.
 
+That recovery is demonstrated on the included example, not guaranteed on
+unfamiliar text. The [held-out benchmark](BENCHMARK.md) measured 14.8% mean
+letter accuracy for genetic search versus 22.2% for frequency ranking, with
+no exact recoveries by either method. This is an educational search engine
+whose current fitness function needs broader language coverage.
+
 ## Usage
 
 ```python
