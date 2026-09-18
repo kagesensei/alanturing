@@ -9,7 +9,7 @@ personality layer for `turing-a1-3B-instruct-abliterated-claudetuned` and
 the planned Turing Test Simulator (see the root
 [README](../../README.md#roadmap) and [`historical_notes.md`](../../historical_notes.md)).
 It does not itself implement the simulator, and it does not fine-tune
-anything -- model training happens in a separate repository. This is data
+anything -- model training has its own [workflow directory](../../finetune). This is data
 and the validation code that keeps that data honest.
 
 Requires Python 3.12 -- see the [repo root README](../../README.md#setup)

@@ -4,3 +4,13 @@ __pycache__/
 .venv/
 venv/
 *.log
+finetune/data/
+finetune/outputs/
+finetune/evaluations/
+*.safetensors
+*.gguf
+*.pt
+*.pth
+.env
+.env.*
+!.env.example

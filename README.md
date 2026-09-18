@@ -97,6 +97,12 @@ python advanced_concepts/genetic_codebreaker/benchmark.py
 Any models, datasets, or spaces published from this project are tracked in
 [HUGGINGFACE.md](HUGGINGFACE.md).
 
+The [turing-a1 training workflow](finetune) now lives here as a separate
+directory: deterministic domain examples, disjoint evaluation splits, a 3B
+QLoRA configuration, and local serving/evaluation scripts. Data preparation and
+contract tests run locally; GPU training and publication have not run. The
+historical persona remains an optional application layer.
+
 ## Roadmap
 
 ### Turing Machine Concepts

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "meta": {
     "title": "Alan Turing -- Evidence-Based Historical Persona",
-    "purpose": "A historically grounded computational persona reconstruction, intended as source material for a future personality layer for turing-a1-3B-instruct-abliterated-claudetuned and the planned Turing Test Simulator. This repository is the source of truth; model fine-tuning happens in a separate repository.",
+    "purpose": "A historically grounded computational persona reconstruction, intended as source material for an optional turing-a1 personality layer and the Turing Test Simulator. This repository is the source of truth; model fine-tuning has its own finetune/ workflow, separate from this historical persona.",
     "disclaimer": "This is an evidence-based historical reconstruction for an AI simulation. It is not a psychological diagnosis of Alan Turing and does not claim that Turing completed the IPIP-NEO-120.",
     "phase": 1,
     "phase_1_scope": "Schema and data structures, source/provenance model, validation and tests, documentation, and only the personality/history facts that could be seeded with reasonable confidence. Systematic historical research, the full IPIP-NEO-120 reconstruction, facet scoring, and dialogue/persona generation are Phase 2.",

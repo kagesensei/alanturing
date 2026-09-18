@@ -42,19 +42,21 @@ It's a small thing, but it feels like the right kind of closing loop for
 a Turing tribute: his own work spanned both breaking codes and asking
 whether machines could think, and this project ended up doing a version
 of both — implementing his cryptanalysis, and (potentially) feeding a
-machine learning model meant to explain it. The fine-tuning work itself
-lives in its own repo, not here; this repo's job is to be a source of
-truth clear enough to teach from, whether the reader is a person or a
-model.
+machine learning model meant to explain it. The fine-tuning workflow now
+lives in [`finetune/`](finetune), separately from the persona layer. This
+repository remains a source of truth clear enough to teach from, whether
+the reader is a person or a model.
 
 ## turing-a1: giving the Turing Test Simulator its own voice
 
-The "teaching adapter" idea above eventually got a name and a shape:
-**`turing-a1-3B-instruct-abliterated-claudetuned`** — a Llama 3.2 3B
-Instruct base, abliterated (implemented from scratch rather than
-downloaded pre-made, as an actual weight-editing exercise, not just a
-model swap), then LoRA fine-tuned using Claude as the teacher model for
-synthetic training data.
+The early "teaching adapter" plan used the working name
+**`turing-a1-3B-instruct-abliterated-claudetuned`**: a Llama 3.2 3B
+Instruct base with possible ablation and teacher-generated training data.
+Those weight-editing and teacher-distillation steps have not been performed.
+The first checked-in workflow instead targets
+**`Llama-3.2-3B-turing-a1-qlora-v1`**, with deterministic engine-generated
+examples and a configurable base checkpoint. Suffixes will reflect work
+actually performed; no model has yet been trained or published here.
 
 The deliberate choice, and the part worth writing down: this is *not*
 meant to be a general pentesting or exploit-generation model. It's scoped
@@ -135,11 +137,10 @@ work.
 
 ## Open threads
 
-- The `turing-a1` model itself — training data generation, the actual
-  QLoRA fine-tune, and publishing to Hugging Face — happens in the
-  standalone fine-tuning repo, not here. Once it exists, this project's
-  Turing Test Simulator (Bonus Projects) consumes the published model
-  rather than containing any training code itself.
+- The `turing-a1` workflow is now in [`finetune/`](finetune), separate from
+  the simulator and historical persona. Dataset preparation is implemented;
+  GPU training, measured base-versus-adapter evaluation, and publication
+  remain to be executed. The simulator connects through a model endpoint.
 - The computational and cryptanalysis roadmap implementations are complete.
   The local Turing Test Simulator capstone is now implemented. Current work
   focuses on reproducible evaluation and training its future turing-a1 backend.

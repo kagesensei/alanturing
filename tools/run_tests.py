@@ -8,7 +8,8 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 PROJECT_ROOTS = (
-    "turing_machines", "cryptanalysis", "advanced_concepts", "bonus", "persona", "tools",
+    "turing_machines", "cryptanalysis", "advanced_concepts", "bonus", "persona",
+    "tools", "finetune",
 )
 CHILD = """
 import sys, unittest
