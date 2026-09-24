@@ -22,7 +22,7 @@ class Conversation:
     @property
     def backend_label(self) -> str:
         if self.client:
-            return 'configured model endpoint'
+            return getattr(self.client, 'label', 'configured model endpoint')
         return 'local demonstration (no trained model)'
 
     def answer(self, question: str, persona_id: str, history: list[dict]) -> dict:

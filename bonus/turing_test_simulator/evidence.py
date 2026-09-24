@@ -6,7 +6,7 @@ import re
 import sys
 
 
-PERSONA_DIR = Path(__file__).resolve().parents[2] / 'persona' / 'alan_turing'
+PERSONA_DIR = Path(__file__).resolve().parents[2] / 'model' / 'persona' / 'alan_turing'
 if str(PERSONA_DIR) not in sys.path:
     sys.path.insert(0, str(PERSONA_DIR))
 

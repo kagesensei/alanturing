@@ -1,0 +1,2 @@
+# The root launcher shares the chat application's Flask dependency.
+-r bonus/turing_test_simulator/requirements.txt

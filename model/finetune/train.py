@@ -20,7 +20,8 @@ def load_model(config: dict, splits: dict):
         raise ValueError('CUDA-enabled PyTorch and a compatible GPU are required')
     set_seed(config['seed'])
     revision = model_info(config['base_model'], revision=config['revision']).sha
-    tokenizer = AutoTokenizer.from_pretrained(config['base_model'], revision=revision)
+    tokenizer = AutoTokenizer.from_pretrained(config['base_model'], revision=revision,
+                                               cache_dir=HERE.parent / 'base')
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = 'right'
     ensure_lengths(tokenizer, splits, config['max_length'])
@@ -30,6 +31,7 @@ def load_model(config: dict, splits: dict):
     model = AutoModelForCausalLM.from_pretrained(
         config['base_model'], revision=revision, quantization_config=quantization,
         device_map={'': 0}, torch_dtype=torch.float16, attn_implementation='sdpa',
+        cache_dir=HERE.parent / 'base',
     )
     model.config.use_cache = False
     return model, tokenizer, revision

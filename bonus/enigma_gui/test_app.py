@@ -15,7 +15,9 @@ from app import _LOG_PATH, _parse_plugboard, app  # pylint: disable=wrong-import
 # Importing `app` already adds enigma_simulator to sys.path as a side
 # effect (see app.py), so this import can rely on that rather than
 # repeating the sys.path setup here.
-from enigma import EnigmaMachine, EnigmaSettings  # pylint: disable=wrong-import-position
+# The root launcher also has an app module; this local import must follow app.
+# pylint: disable-next=wrong-import-position,wrong-import-order
+from enigma import EnigmaMachine, EnigmaSettings
 
 VALID_FORM = {
     "rotor1": "I",

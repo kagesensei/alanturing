@@ -7,12 +7,12 @@ Turing completed the IPIP-NEO-120.**
 This directory is the historically grounded *source of truth* for a future
 personality layer for `turing-a1-3B-instruct-abliterated-claudetuned` and
 the planned Turing Test Simulator (see the root
-[README](../../README.md#roadmap) and [`historical_notes.md`](../../historical_notes.md)).
+[README](../../../README.md#roadmap) and [`historical_notes.md`](../../../historical_notes.md)).
 It does not itself implement the simulator, and it does not fine-tune
 anything -- model training has its own [workflow directory](../../finetune). This is data
 and the validation code that keeps that data honest.
 
-Requires Python 3.12 -- see the [repo root README](../../README.md#setup)
+Requires Python 3.12 -- see the [repo root README](../../../README.md#setup)
 for venv setup. Standard library only.
 
 ## Why this exists
@@ -109,7 +109,7 @@ chronology event dated after its own `knowledge_cutoff_year` -- a
 ### `turing_a1`'s two separable layers
 
 `turing_a1-3B-instruct-abliterated-claudetuned` (see
-[`historical_notes.md`](../../historical_notes.md)) is deliberately split
+[`historical_notes.md`](../../../historical_notes.md)) is deliberately split
 into two concepts that must stay separable:
 
 1. **Domain specialization** -- cryptanalysis, computational reasoning,
@@ -160,7 +160,7 @@ validator actually rejects a synthetic violation" test.
 ## Roadmap status
 
 This is the source-of-truth groundwork consumed by the
-[Turing Test Simulator](../../bonus/turing_test_simulator). The simulator now
+[Turing Test Simulator](../../../bonus/turing_test_simulator). The simulator now
 supports conservative evidence-scoped conversations and a configurable model
 endpoint. This directory remains persona data and validation, separate from
 the model's technical specialization and training.

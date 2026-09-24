@@ -4,9 +4,10 @@ __pycache__/
 .venv/
 venv/
 *.log
-finetune/data/
-finetune/outputs/
-finetune/evaluations/
+model/finetune/data/
+model/finetune/outputs/
+model/finetune/evaluations/
+model/base/
 *.safetensors
 *.gguf
 *.pt

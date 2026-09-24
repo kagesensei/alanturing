@@ -125,9 +125,15 @@ Python:
   for the narrowly scoped additional contract/fixture exceptions; new
   duplicate blocks require review, not blanket suppression.
 
+## Model selection
+
+- Use Llama for this project's fine-tuned model. Do not substitute another
+  model family to work around download or access failures.
+- The user explicitly excludes Chinese models.
+
 ## Historical persona guidance
 
-For all work under `persona/alan_turing/`:
+For all work under `model/persona/alan_turing/`:
 
 - Preserve the existing evidence/provenance taxonomy: `DIRECT`,
   `CONTEMPORARY`, `SCHOLARLY`, `INFERRED`, and `UNKNOWN`, together with

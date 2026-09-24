@@ -8,7 +8,7 @@ Each project runs in a fresh interpreter with its own working directory,
 preserving local imports and avoiding module-name collisions. Output includes
 each child's real test count; the final unittest count is the number of project
 suites. Test folders are discovered beneath `turing_machines`, `cryptanalysis`,
-`advanced_concepts`, `bonus`, `persona`, `tools`, and `finetune`.
+`advanced_concepts`, `bonus`, `tools`, and `model`.
 
 Empty suites, missing dependencies, skipped tests, failures, and a per-project
 300-second timeout fail the check. There is no silent optional-backend skip.

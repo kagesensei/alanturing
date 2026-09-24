@@ -127,7 +127,7 @@ Python:
 
 ## Historical persona guidance
 
-For all work under `persona/alan_turing/`:
+For all work under `model/persona/alan_turing/`:
 
 - Preserve the existing evidence/provenance taxonomy: `DIRECT`,
   `CONTEMPORARY`, `SCHOLARLY`, `INFERRED`, and `UNKNOWN`, together with

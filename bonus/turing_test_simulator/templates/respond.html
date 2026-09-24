@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Human respondent · The imitation room</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
-<body><main id="human-room" data-invite="{{ invite }}"><p class="eyebrow">THE IMITATION ROOM</p>
+<body data-base="{{ request.script_root }}"><main id="human-room" data-invite="{{ invite }}"><p class="eyebrow">THE IMITATION ROOM</p>
 <h1>The human side</h1><p>You are the human respondent. Answer the judge's questions in your own words. Your answers will be compared with machine responses after both are ready.</p>
 <p class="notice">Your text is recorded as participant input, not verified historical evidence. Avoid invented historical quotations.</p>
 <section class="panel"><h2 id="mode">Waiting for a session</h2><div id="transcript" aria-live="polite"></div>

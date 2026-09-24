@@ -5,6 +5,7 @@ from flask import Flask, jsonify, render_template, request
 from conversation import Conversation
 from experiment import ExperimentStore
 from model_client import ChatClient, ModelConfig, ModelError
+from local_model import LocalModelClient
 
 
 def request_object():
@@ -19,7 +20,7 @@ def create_app(conversation=None):
     app.config['MAX_CONTENT_LENGTH'] = 16_384
     if conversation is None:
         config = ModelConfig.from_environment()
-        conversation = Conversation(ChatClient(config) if config else None)
+        conversation = Conversation(ChatClient(config) if config else LocalModelClient())
     store = ExperimentStore(conversation)
     app.extensions['experiments'] = store
     register_pages(app, conversation)
@@ -46,7 +47,7 @@ def register_judge_routes(app, store):
         body = request_object()
         identifier, invite = store.create(body.get('persona', 'technical'),
                                           body.get('kind', 'chat'))
-        return jsonify({'id': identifier, 'invite': f'/respond/{invite}',
+        return jsonify({'id': identifier, 'invite': f'{request.script_root}/respond/{invite}',
                         'session': store.view(identifier)}), 201
 
     @app.get('/api/sessions/<identifier>')

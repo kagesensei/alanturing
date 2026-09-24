@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alan Turing · A Tribute in Code</title>
+  <style>
+    body { margin:0; background:#101b22; color:#edf3ed; font:17px/1.6 system-ui,sans-serif; }
+    main { max-width:1100px; margin:auto; padding:3rem 1.5rem; }
+    h1 { font-size:clamp(2rem,5vw,3.5rem); line-height:1.15; }
+    h2 { margin-top:2.5rem; color:#c5d8cf; }
+    .eyebrow { color:#94cbb8; text-transform:uppercase; letter-spacing:.15em; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem; }
+    article { background:#1a2b33; border:1px solid #36504f; border-radius:12px; padding:1.4rem; }
+    h3 { margin-top:0; } article p { color:#c4d1d4; }
+    a { display:inline-block; color:#10231d; background:#a3e3c2; padding:.65rem 1rem; border-radius:6px; font-weight:650; }
+    a:focus-visible { outline:3px solid white; outline-offset:4px; }
+    .muted { color:#9cacb4; font-size:.9rem; }
+  </style>
+</head>
+<body><main>
+  <p class="eyebrow">Explore the collection</p>
+  <h1>Alan Turing: A Tribute in Code</h1>
+  <p>Machines, ciphers, and the question of intelligence. Choose a project to explore.</p>
+  <p class="muted">Chat is available here now. The other projects are listed for discovery.</p>
+  {% for group in projects|groupby(0) %}
+  <section><h2>{{ group.grouper }}</h2><div class="grid">
+    {% for category, title, description in group.list %}
+    <article><h3>{{ title }}</h3><p>{{ description }}</p>
+      {% if title == 'Turing Test Simulator' %}<a href="/chat/">Open chat →</a>
+      {% else %}<span class="muted">Launcher coming later</span>{% endif %}
+    </article>
+    {% endfor %}
+  </div></section>
+  {% endfor %}
+</main></body></html>

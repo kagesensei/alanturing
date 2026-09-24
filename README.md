@@ -15,10 +15,16 @@ For those who wish to understand computation from its origins, this repository i
 
 ## Start here
 
-All 18 main roadmap items have implementations, including the local Turing Test
-Simulator. Its configurable model connection is ready for a future turing-a1
-model; the default demo does not impersonate a trained model. Each implementation
-has tests, a runnable example, and its own README.
+Run `python app.py` in the activated environment and open
+**http://127.0.0.1:5000** for the project catalogue. Its **Open chat** link
+opens the Turing Test Simulator in the same process. All other projects are
+listed with descriptions; their launcher links are not enabled yet.
+Install Flask with `python -m pip install -r requirements.txt`.
+
+Chat defaults to the local adapter under `model/finetune/outputs/` and loads
+it on the first question. Base weights live under `model/base/`; historical
+persona data lives under `model/persona/`. See [model setup](model/README.md).
+The standalone `python bonus/turing_test_simulator/app.py` command still works.
 
 | Explore | Run from the root after setup | What to look for |
 | --- | --- | --- |
@@ -97,7 +103,7 @@ python advanced_concepts/genetic_codebreaker/benchmark.py
 Any models, datasets, or spaces published from this project are tracked in
 [HUGGINGFACE.md](HUGGINGFACE.md).
 
-The [turing-a1 training workflow](finetune) now lives here as a separate
+The [turing-a1 training workflow](model/finetune) now lives here as a separate
 directory: deterministic domain examples, disjoint evaluation splits, a 3B
 QLoRA configuration, and local serving/evaluation scripts. Data preparation and
 contract tests run locally; GPU training and publication have not run. The
@@ -128,6 +134,6 @@ historical persona remains an optional application layer.
 
 ### Bonus Projects & Reflections
 - [x] [Turing Test Simulator](bonus/turing_test_simulator) — local chat, evidence-scoped personas, human/model comparison, and configurable model endpoint; turing-a1 training remains separate work
-  - [x] Groundwork: [Alan Turing evidence-based historical persona](persona/alan_turing) — provenance/confidence-tagged source-of-truth data (not the simulator itself)
+  - [x] Groundwork: [Alan Turing evidence-based historical persona](model/persona/alan_turing) — provenance/confidence-tagged source-of-truth data (not the simulator itself)
 - [x] [Interactive Enigma GUI](bonus/enigma_gui) (Flask web front-end for the Enigma simulator)
 - [x] [`historical_notes.md`](historical_notes.md) — personal reflections and inspirations behind this project

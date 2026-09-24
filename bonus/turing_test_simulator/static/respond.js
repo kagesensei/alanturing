@@ -1,4 +1,5 @@
 "use strict";
+const base = document.body.dataset.base || "";
 const invite = document.getElementById("human-room").dataset.invite;
 const byId = id => document.getElementById(id);
 let timer = null;
@@ -7,7 +8,7 @@ let rendered = "";
 async function refresh() {
   clearTimeout(timer);
   try {
-    const response = await fetch(`/api/respond/${invite}`);
+    const response = await fetch(`${base}/api/respond/${invite}`);
     const data = await response.json();
     if (!response.ok) throw new Error(data.error);
     byId("mode").textContent = `Persona: ${data.persona}`;
@@ -29,7 +30,7 @@ async function refresh() {
 byId("answer").addEventListener("submit", async event => {
   event.preventDefault(); byId("send").disabled = true;
   try {
-    const response = await fetch(`/api/respond/${invite}`, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({answer:byId("response").value})});
+    const response = await fetch(`${base}/api/respond/${invite}`, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({answer:byId("response").value})});
     const data = await response.json(); if (!response.ok) throw new Error(data.error);
     byId("response").value = ""; await refresh();
   } catch (error) { byId("status").textContent = error.message; byId("send").disabled = false; }

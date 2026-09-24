@@ -10,7 +10,7 @@ import sys
 from training_config import HERE, load_splits
 
 
-SIMULATOR = HERE.parent / 'bonus' / 'turing_test_simulator'
+SIMULATOR = HERE.parents[1] / 'bonus' / 'turing_test_simulator'
 sys.path.insert(0, str(SIMULATOR))
 from model_client import ChatClient, ModelConfig, ModelError  # pylint: disable=wrong-import-position
 

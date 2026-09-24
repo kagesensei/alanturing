@@ -4,12 +4,11 @@ This directory keeps turing-a1's training code shareable in this Git repository,
 separate from the historical persona dataset and from APT_Watch's analyst model.
 It is a self-contained workflow directory, not a nested Git repository.
 
-**Current status:** deterministic dataset generation, validation, leakage checks,
-configuration, a QLoRA training entry point, endpoint evaluation, and an adapter
-server are implemented. Data/contract tests and the dependency-free dry run have
-been executed. **GPU training, real model inference, distillation, and publication
-have not been executed.** The GPU dependency pins are a proposed compatible
-stack; they still need installation and a hardware trial in this environment.
+**Current status:** CUDA PyTorch and the pinned training stack are installed;
+the RTX 2070 is detected and dataset generation has completed. Llama download
+requires Hugging Face access/authentication (the unauthenticated request returned
+HTTP 401). GPU training, real model inference and publication have not run.
+See [local model setup](../README.md).
 
 ## First model
 
@@ -39,9 +38,9 @@ Llama” attribution. Review the linked model's terms when preparing publication
 Activate the root Python 3.12 environment:
 
 ```text
-python finetune/prepare_data.py
-python finetune/train.py --dry-run
-python -m unittest discover -s finetune -v
+python model/finetune/prepare_data.py
+python model/finetune/train.py --dry-run
+python -m unittest discover -s model/finetune -v
 ```
 
 The generator creates **1,018** exact-answer examples from tested engines:
@@ -65,10 +64,10 @@ in the activated root environment, followed by the project pins:
 
 ```text
 python -m pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cu126
-python -m pip install -r finetune/requirements.txt
+python -m pip install -r model/finetune/requirements.txt
 python -m pip check
 python -c "import torch; print(torch.cuda.is_available())"
-python finetune/train.py --max-steps 5
+python model/finetune/train.py --max-steps 5
 ```
 
 The CUDA wheel and your installed driver must be compatible. Current
@@ -79,7 +78,7 @@ Linux GPU environment rather than claiming the trial succeeded.
 Before a full one-epoch run, choose a new `output_name` so the trial is retained:
 
 ```text
-python finetune/train.py
+python model/finetune/train.py
 ```
 
 Training resolves `revision` to a Hub commit SHA and records it in the adapter
@@ -100,7 +99,7 @@ install GPU dependencies or claim to exercise the training loop.
 After an actual successful training run:
 
 ```text
-python finetune/serve.py --adapter finetune/outputs/Llama-3.2-3B-turing-a1-qlora-v1
+python model/finetune/serve.py --adapter model/finetune/outputs/Llama-3.2-3B-turing-a1-qlora-v1
 ```
 
 The local server reloads the recorded base revision and adapter and exposes
@@ -108,7 +107,7 @@ The local server reloads the recorded base revision and adapter and exposes
 512 output tokens and 4,096 input tokens. Set `TURING_MODEL_API_KEY` to require
 a bearer key. It is a single-process local development server.
 
-Configure the [simulator](../bonus/turing_test_simulator) with this endpoint and
+Configure the [simulator](../../bonus/turing_test_simulator) with this endpoint and
 the output model name. Its historical mode requires evidence-selection JSON,
 which this starter arithmetic/cipher dataset does **not** train explicitly.
 Evaluate that capability separately; invalid persona replies fail closed.
@@ -117,7 +116,7 @@ Run `evaluate.py` against the same test split for both the served original base
 and the served adapter, changing the model and output filenames:
 
 ```text
-python finetune/evaluate.py --endpoint http://127.0.0.1:8080/v1/chat/completions --model Llama-3.2-3B-turing-a1-qlora-v1 --output finetune/adapter-evaluation.json
+python model/finetune/evaluate.py --endpoint http://127.0.0.1:8080/v1/chat/completions --model Llama-3.2-3B-turing-a1-qlora-v1 --output model/finetune/adapter-evaluation.json
 ```
 
 Reports include predictions, exact-answer accuracy by task, endpoint failures,
@@ -134,7 +133,7 @@ merging and GGUF conversion can follow after measured evaluation. Use
 and base/adapter evaluations, and include upstream license/attribution files.
 Upload the **trained adapter output**, not this untrained configuration, under
 `kageskull/<actual-model-name>`. Record the actual published link in
-[`HUGGINGFACE.md`](../HUGGINGFACE.md) only after publication.
+[`HUGGINGFACE.md`](../../HUGGINGFACE.md) only after publication.
 
 If you add teacher-generated explanations later, log the teacher model/revision,
 prompts, parameters, and dataset lineage; verify answers against the engines and

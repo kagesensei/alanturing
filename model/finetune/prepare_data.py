@@ -7,7 +7,7 @@ from pathlib import Path
 import sys
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 for folder in ('turing_machines/basic_simulator', 'turing_machines/arithmetic_turing_machine',
                'cryptanalysis/frequency_analysis'):
     sys.path.insert(0, str(ROOT / folder))

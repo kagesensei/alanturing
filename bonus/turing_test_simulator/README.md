@@ -14,15 +14,17 @@ python -m pip install -r bonus/turing_test_simulator/requirements.txt
 python bonus/turing_test_simulator/app.py
 ```
 
-Open **http://127.0.0.1:5001**. The default is explicitly labeled **local
-demonstration (no trained model)**. Historical modes retrieve bundled evidence
-lexically; technical mode explains that a model endpoint must be connected.
-There is no pretend turing-a1 model behind this demonstration.
+Open **http://127.0.0.1:5001**, or run root `python app.py` and follow
+**Open chat** at http://127.0.0.1:5000. Both entry points use the same local
+fine-tuned adapter. The first question loads the weights into GPU memory.
+Set `TURING_MODEL_ADAPTER` to select another completed adapter directory.
+Missing weights or inference failures produce an explicit error; chat does
+not silently substitute canned demonstration answers. See [model setup](../../model/README.md).
 
 `python bonus/turing_test_simulator/demo.py` runs a complete scripted comparison
 round without a browser. Its human response is a fixture, explicitly labeled.
 
-## Connect turing-a1
+## Optional external model endpoint
 
 The transport accepts a chat-completions endpoint, such as a configured
 [llama.cpp server](https://github.com/ggml-org/llama.cpp/tree/master/tools/server).
@@ -41,8 +43,8 @@ the server environment, never the browser. Remote endpoints require HTTPS;
 loopback HTTP is supported. Requests have a 30-second timeout and responses a
 64 KiB limit. Errors do not silently fall back to the demo or expose upstream
 error bodies. The key is neither displayed nor included in transcript exports.
-An actual turing-a1 endpoint has not yet been trained or tested here; automated
-tests exercise the HTTP contract against a local fixture server.
+Automated transport tests use a local fixture server; local training and measured
+model results are recorded separately under `model/`.
 
 ## Chat and compare
 

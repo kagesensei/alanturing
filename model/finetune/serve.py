@@ -49,6 +49,7 @@ def load_adapter(directory: Path):
     base = AutoModelForCausalLM.from_pretrained(
         manifest['base_model'], revision=manifest['resolved_revision'],
         quantization_config=quantization, device_map={'': 0}, torch_dtype=torch.float16,
+        cache_dir=Path(__file__).resolve().parents[1] / 'base', local_files_only=True,
     )
     model = PeftModel.from_pretrained(base, directory)
     model.eval()

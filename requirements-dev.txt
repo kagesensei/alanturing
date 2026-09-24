@@ -1,6 +1,6 @@
 astroid==4.0.4
 colorama==0.4.6
-dill==0.4.1
+dill==0.4.0
 isort==9.0.1
 mccabe==0.7.0
 mypy_extensions==1.1.0

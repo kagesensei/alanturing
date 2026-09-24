@@ -1,10 +1,11 @@
 "use strict";
+const base = document.body.dataset.base || "";
 let sessionId = null;
 let pollCount = 0;
 let timer = null;
 const byId = id => document.getElementById(id);
 async function api(path, body) {
-  const response = await fetch(path, body === undefined ? {} : {
+  const response = await fetch(base + path, body === undefined ? {} : {
     method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)
   });
   const data = await response.json();
@@ -54,7 +55,7 @@ byId("setup").addEventListener("submit", async event => {
     sessionId = result.id; pollCount = 0; byId("conversation").hidden = false;
     byId("invitation").hidden = result.session.kind !== "blind";
     byId("invite-link").href = result.invite;
-    byId("export").href = `/api/sessions/${sessionId}/export`; render(result.session);
+    byId("export").href = `${base}/api/sessions/${sessionId}/export`; render(result.session);
   } catch (error) { byId("status").textContent = error.message; }
 });
 byId("ask").addEventListener("submit", async event => {

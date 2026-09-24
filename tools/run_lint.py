@@ -54,7 +54,7 @@ def main() -> int:
     baseline_path = Path(__file__).with_name("lint_duplicates.json")
     baseline = json.loads(baseline_path.read_text(encoding="utf-8"))
     targets = [name for name in PROJECT_ROOTS if (ROOT / name).exists()]
-    targets.append("test_all.py")
+    targets.extend(("test_all.py", "app.py", "project_launcher.py", "test_launcher.py"))
     result = subprocess.run(
         [sys.executable, "-m", "pylint", *targets, "--output-format=json",
          "--reports=n", "--score=n"],
