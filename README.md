@@ -26,6 +26,11 @@ it on the first question. Base weights live under `model/base/`; historical
 persona data lives under `model/persona/`. See [model setup](model/README.md).
 The standalone `python bonus/turing_test_simulator/app.py` command still works.
 
+For historical context, see the [cybersecurity timeline](historical_timeline.md).
+[Historical notes](historical_notes.md) explain the project's design choices,
+the turing-a1 adapter's actual scope and the separation between technical work
+and the optional historical persona.
+
 | Explore | Run from the root after setup | What to look for |
 | --- | --- | --- |
 | Computation | `python turing_machines/basic_simulator/turing_machine.py` | Binary increment and complement through tape transitions |
@@ -133,7 +138,8 @@ persona remains an optional application layer.
 - [x] [Genetic Algorithm for Code Breaking](advanced_concepts/genetic_codebreaker)
 
 ### Bonus Projects & Reflections
-- [x] [Turing Test Simulator](bonus/turing_test_simulator) — local chat, evidence-scoped personas, human/model comparison, and configurable model endpoint; turing-a1 training remains separate work
+- [x] [Turing Test Simulator](bonus/turing_test_simulator): local chat, evidence-scoped personas, human/model comparison and configurable model endpoint; it uses the trained turing-a1 adapter, while the full held-out evaluation remains incomplete
   - [x] Groundwork: [Alan Turing evidence-based historical persona](model/persona/alan_turing) — provenance/confidence-tagged source-of-truth data (not the simulator itself)
 - [x] [Interactive Enigma GUI](bonus/enigma_gui) (Flask web front-end for the Enigma simulator)
-- [x] [`historical_notes.md`](historical_notes.md) — personal reflections and inspirations behind this project
+- [x] [`historical_notes.md`](historical_notes.md) — technical design rationale, model scope and historical persona separation
+- [x] [`historical_timeline.md`](historical_timeline.md) — timeline from Turing to cryptoanalytical concepts we are facing today (note: some speculative)
