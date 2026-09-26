@@ -53,6 +53,9 @@ byId("setup").addEventListener("submit", async event => {
   try {
     const result = await api("/api/sessions", {persona:byId("persona").value, kind:byId("kind").value});
     sessionId = result.id; pollCount = 0; byId("conversation").hidden = false;
+    const personaChoice = byId("persona").selectedOptions[0].textContent.trim();
+    const kindChoice = byId("kind").selectedOptions[0].textContent.trim();
+    byId("session-options").textContent = `Selected voice: ${personaChoice}. Format: ${kindChoice}.`;
     byId("invitation").hidden = result.session.kind !== "blind";
     byId("invite-link").href = result.invite;
     byId("export").href = `${base}/api/sessions/${sessionId}/export`; render(result.session);

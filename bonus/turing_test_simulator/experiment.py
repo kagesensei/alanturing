@@ -5,6 +5,8 @@ import secrets
 import threading
 import time
 
+from tools.app_logging import record_chat_event
+
 
 @dataclass
 class Experiment:
@@ -46,6 +48,17 @@ class ExperimentStore:
             identifier = secrets.token_urlsafe(24)
             game = Experiment(persona, kind, secrets.choice(('A', 'B')), secrets.token_urlsafe(24))
             self.games[identifier] = game
+            persona_options = ({'persona_id': persona, 'label': 'Technical assistant'}
+                               if persona == 'technical'
+                               else self.conversation.library.personas[persona])
+            record_chat_event(identifier, 'chat.started',
+                              selected_options={'persona': persona,
+                                                'persona_label': persona_options.get('label'),
+                                                'period': persona_options.get('period_description'),
+                                                'knowledge_cutoff_year': persona_options.get(
+                                                    'knowledge_cutoff_year'),
+                                                'kind': kind},
+                              backend=self.conversation.backend_label)
             return identifier, game.invite
 
     def get(self, identifier):
@@ -68,6 +81,14 @@ class ExperimentStore:
                                 {'role': 'assistant', 'content': previous['machine']['text']}])
             answer = self.conversation.answer(question, game.persona, history)
             game.rounds.append({'question': question, 'machine': answer, 'human': None})
+            record_chat_event(identifier, 'chat.turn', question=question,
+                              response=answer.get('text'),
+                              response_label=answer.get('label'),
+                              persona=game.persona, kind=game.kind,
+                              claim_ids=[claim.get('claim_id') for claim in
+                                         answer.get('claims', [])],
+                              source_ids=[source.get('source_id') for source in
+                                          answer.get('sources', [])])
             return self.view(identifier)
 
     def view(self, identifier):
@@ -104,11 +125,13 @@ class ExperimentStore:
     def answer_human(self, invite, text):
         text = require_text(text, 8000)
         with self.lock:
-            _, game = self.respondent(invite)
+            identifier, game = self.respondent(invite)
             if (game.kind != 'blind' or game.verdict or not game.rounds
                     or game.rounds[-1]['human'] is not None):
                 raise ValueError('There is no question awaiting a human answer')
             game.rounds[-1]['human'] = text
+            record_chat_event(identifier, 'human.response', answer=text,
+                              persona=game.persona, kind=game.kind)
 
     def reveal(self, identifier, guess, confidence):
         valid_confidence = isinstance(confidence, int) and not isinstance(confidence, bool)
@@ -124,4 +147,6 @@ class ExperimentStore:
                             'machine_label': game.machine_label,
                             'correct': guess == game.machine_label,
                             'note': 'A local subjective exercise, not evidence of consciousness.'}
+            record_chat_event(identifier, 'judge.verdict', guess=guess,
+                              confidence=confidence, result=game.verdict)
             return self.view(identifier)

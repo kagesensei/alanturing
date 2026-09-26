@@ -1,6 +1,7 @@
 """Load verified text weights from a pinned base checkpoint for training and chat."""
 
 from pathlib import Path
+import os
 
 
 CACHE = Path(__file__).resolve().parents[1] / 'base'
@@ -17,11 +18,13 @@ def check_loaded_weights(report):
 
 
 def load_text_model(model_id, revision, offline=False):
+    if offline:
+        os.environ['HF_HUB_OFFLINE'] = '1'
     # Optional GPU stack is imported only when loading real weights.
-    # pylint: disable=import-outside-toplevel,import-error
+    # pylint: disable=import-outside-toplevel
     import torch
     from transformers import AutoConfig, AutoModelForCausalLM, BitsAndBytesConfig
-    # pylint: enable=import-outside-toplevel,import-error
+    # pylint: enable=import-outside-toplevel
 
     if not torch.cuda.is_available():
         raise ValueError('CUDA-enabled PyTorch and a compatible GPU are required')

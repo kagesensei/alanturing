@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Direct Mistral Chat</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='direct_chat.css') }}">
+</head>
+<body data-base="{{ request.script_root }}">
+  <main>
+    <header>
+      <p class="eyebrow">TURING-A1 · DIRECT MODEL CHAT</p>
+      <h1>Just chat</h1>
+      <p class="subtitle">Your messages go directly to the fine-tuned local Ministral model.</p>
+      <p class="model">{{ backend }} · No retrieval or historical persona layer</p>
+    </header>
+    <section id="messages" class="messages" aria-live="polite" aria-label="Chat messages"></section>
+    <form id="chat-form">
+      <label for="message">Message</label>
+      <textarea id="message" rows="3" maxlength="4000" required
+                placeholder="What would you like to talk about?"></textarea>
+      <div class="controls">
+        <button id="send" type="submit">Send</button>
+        <button id="new-chat" type="button" class="secondary">New chat</button>
+        <span id="status" role="status"></span>
+      </div>
+    </form>
+    <footer>Model replies are generated. They are not historical statements by Alan Turing.</footer>
+  </main>
+  <script src="{{ url_for('static', filename='direct_chat.js') }}"></script>
+</body>
+</html>

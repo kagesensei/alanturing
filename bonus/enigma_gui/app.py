@@ -41,8 +41,12 @@ REFLECTOR_CHOICES = sorted(REFLECTOR_WIRINGS)
 # with their own fixture requests (the mistake this exact conversation
 # caught, reading the log after test runs had already written to it).
 _LOG_PATH = Path(
-    os.environ.get("ENIGMA_GUI_LOG_PATH", str(Path(__file__).resolve().parent / "activity.log"))
+    os.environ.get(
+        "ENIGMA_GUI_LOG_PATH",
+        str(Path(__file__).resolve().parents[2] / "logs" / "enigma_gui.log"),
+    )
 )
+_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
 activity_logger = logging.getLogger("enigma_gui.activity")
 activity_logger.setLevel(logging.INFO)
 if not activity_logger.handlers:

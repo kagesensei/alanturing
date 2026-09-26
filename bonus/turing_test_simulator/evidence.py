@@ -26,6 +26,7 @@ class EvidenceLibrary:
             raise ValueError(f'Persona data failed validation: {issues}')
         self.personas = {row['persona_id']: row
                          for row in load_document('persona.json')['temporal_personas']}
+        self.conversational_style = load_document('conversational_style.json')
         self.sources = {row['source_id']: row for row in load_document('sources.json')['sources']}
         self.events = load_document('chronology.json')['events']
         self.interests = load_document('interests.json')['interests']
@@ -71,14 +72,21 @@ class EvidenceLibrary:
 
 
 def select_local(question: str, claims: list[dict]) -> list[str]:
-    """Small lexical demo, explicitly not a trained conversational model."""
+    """Find relevant records before model reranking and allow narrow abstentions."""
     words = set(re.findall(r'[a-z]{4,}', question.lower())) - {
         'what', 'when', 'where', 'which', 'your', 'about', 'tell', 'turing', 'have',
     }
     scored = [(len(words & set(re.findall(r'[a-z]{4,}', claim['text'].lower()))), claim)
               for claim in claims]
-    return [claim['claim_id'] for score, claim in sorted(scored, key=lambda row: -row[0])[:3]
-            if score]
+    scored.sort(key=lambda row: row[0], reverse=True)
+    selected = []
+    for score, claim in scored:
+        minimum = 1 if claim['evidence_type'] == 'UNKNOWN' else 2
+        if score >= minimum:
+            selected.append(claim['claim_id'])
+        if len(selected) == 3:
+            break
+    return selected
 
 
 def render_selection(selected: list[str], claims: list[dict]) -> tuple[str, list[dict]]:

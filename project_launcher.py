@@ -10,6 +10,9 @@ from werkzeug.middleware.dispatcher import DispatcherMiddleware
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / 'bonus' / 'turing_test_simulator'))
 from simulator_app import create_app as create_chat  # pylint: disable=wrong-import-position
+from local_model import LocalModelClient  # pylint: disable=wrong-import-position
+from model.finetune.chat_app import create_app as create_direct_chat  # pylint: disable=wrong-import-position
+from tools.app_logging import configure_flask_logging  # pylint: disable=wrong-import-position
 
 
 PROJECTS = (
@@ -74,6 +77,7 @@ PROJECTS = (
 
 def create_app(conversation=None):
     app = Flask(__name__, static_folder=None)
+    configure_flask_logging(app, 'project_catalogue')
 
     @app.get('/')
     def index():
@@ -83,6 +87,14 @@ def create_app(conversation=None):
     def chat_redirect():
         return redirect('/chat/')
 
+    @app.get('/mistral')
+    def direct_chat_redirect():
+        return redirect('/mistral/')
+
     chat = create_chat(conversation)
-    app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {'/chat': chat})
+    active_client = chat.extensions['experiments'].conversation.client
+    shared_client = active_client if isinstance(active_client, LocalModelClient) else None
+    direct_chat = create_direct_chat(shared_client)
+    app.wsgi_app = DispatcherMiddleware(
+        app.wsgi_app, {'/chat': chat, '/mistral': direct_chat})
     return app

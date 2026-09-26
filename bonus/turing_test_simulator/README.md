@@ -66,31 +66,42 @@ teaching app. It is not a multi-worker hosted service. Style, citations, and
 latency can give away the machine; this is a subjective exercise, not a
 controlled human-performance benchmark.
 
-## Evidence and historical scope
+## Conversation and historical scope
 
 - **Technical assistant:** receives only the domain-specialist prompt and chat
   history, with no historical persona. Generated answers remain unverified.
-- **Historical personas:** use the existing registry, `known_events`, and year
-  cutoffs. A record spanning beyond the cutoff is withheld in full. Undated
-  positive interest claims are also withheld. Precision is by year, matching
-  the source registry, not by day within a year.
+- **Historical personas:** speak in first person as an explicit simulation.
+  The prompt uses the selected persona description and evidence-rated voice
+  guidance in `model/persona/alan_turing/conversational_style.json`. It keeps
+  the selected `known_events` and year cutoff. A record spanning beyond the
+  cutoff is withheld in full, and undated positive interest claims are withheld.
+  Follow-up questions use recent conversation context when retrieving records.
+- **Historical evidence:** relevant source records appear separately below each
+  answer. If the persona files do not cover a general question, the model can
+  still respond conversationally, but that answer is not independently verified
+  by this project's evidence library. Unknown preferences remain unknown, and
+  generated dialogue is never presented as a historical quotation.
 - **Fictional modern continuation:** explicitly fictional; can consult the
   broader historical record without pretending it was Turing's own knowledge.
 
-In persona modes the endpoint only selects up to three permitted evidence IDs
-as `{"claim_ids": ["E005"]}`. The application renders the stored record text;
-it never accepts model-written biographical prose or quotations. Unknown IDs,
-future IDs, extra JSON fields, and malformed replies fail closed. Empty
-selections abstain. `UNKNOWN` entries retain their category, confidence, and
-absence of supporting sources. This conservative first version is an evidence
-conversation, not free-form historical impersonation.
+The simulator retrieves up to three locally matched records and makes one
+model call for the conversational reply. It does not ask the model to select
+evidence IDs or copy source excerpts into the answer. Persona traits carry their
+recorded evidence types, confidence labels and source IDs into the system prompt
+as style guidance, not as proof of additional biographical facts.
 
 Claim categories are derived with the existing `persona_validation.classify_claim`.
 Factual claims carry resolvable sources, and all persona replies carry
 `SIMULATED_DIALOGUE_NOT_A_HISTORICAL_QUOTE`. Citation presence validates provenance
 structure, not the historical truth of a source: some bibliography entries still
-need page-level verification. The app adds no biographical claims to the dataset.
-Retrieval relevance is also fallible; a related excerpt may not answer a question.
+need page-level verification. Retrieval relevance is fallible, and unsupported
+general answers should be checked against reliable sources.
+
+The fine-tuned adapter was trained on synthetic binary increment, unary addition
+and Caesar cipher examples. It was not fine-tuned or distilled on Turing dialogue.
+The persona layer is an inference-time simulation based on the current persona
+files. A learned historical voice requires a separately reviewed source-backed
+dialogue dataset and evaluation.
 
 ## Verification
 

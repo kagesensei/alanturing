@@ -17,8 +17,10 @@ For those who wish to understand computation from its origins, this repository i
 
 Run `python app.py` in the activated environment and open
 **http://127.0.0.1:5000** for the project catalogue. Its **Open chat** link
-opens the Turing Test Simulator in the same process. All other projects are
-listed with descriptions; their launcher links are not enabled yet.
+opens the Turing Test Simulator in the same process. The **Open direct Mistral
+chat** link uses the fine-tuned adapter without retrieval or historical persona
+logic. All other projects are listed with descriptions; their launcher links
+are not enabled yet.
 Install Flask with `python -m pip install -r requirements.txt`.
 
 Chat defaults to the local adapter under `model/finetune/outputs/` and loads

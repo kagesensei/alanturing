@@ -1,3 +1,5 @@
+import json
+from pathlib import Path
 import unittest
 
 from simulator_app import create_app
@@ -18,11 +20,25 @@ class TestSimulatorApp(unittest.TestCase):
         return f"/api/sessions/{result['id']}", invite
 
     def test_homepage_and_chat(self):
-        self.assertIn(b'The imitation room', self.client.get('/').data)
+        homepage = self.client.get('/')
+        self.assertIn(b'The imitation room', homepage.data)
+        self.assertIn(b'value="turing_1952" selected', homepage.data)
         url, _ = self.start('chat')
         response = self.client.post(url + '/questions', json={'question': 'Computable numbers?'})
         self.assertEqual(response.status_code, 200)
         self.assertTrue(response.json['rounds'][0]['machine']['sources'])
+
+    def test_chat_log_records_selected_options(self):
+        response = self.client.post('/api/sessions',
+                                    json={'persona': 'turing_1936', 'kind': 'chat'})
+        identifier = response.json['id']
+        log_path = (Path(__file__).resolve().parents[2] / 'logs' / 'chats' /
+                    f'{identifier}.log')
+        event = json.loads(log_path.read_text(encoding='utf-8').splitlines()[0])
+        self.assertEqual(event['event'], 'chat.started')
+        self.assertEqual(event['selected_options']['persona'], 'turing_1936')
+        self.assertEqual(event['selected_options']['knowledge_cutoff_year'], 1936)
+        self.assertEqual(event['selected_options']['kind'], 'chat')
 
     def test_blind_round_hides_assignment_until_verdict(self):
         url, invite = self.start()

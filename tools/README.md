@@ -32,3 +32,10 @@ reviewed exceptions cover equivalent quantum-backend tests/results/demo setup,
 Lorenz settings data fields, crib validation/settings assembly, and sampled
 position test fixtures. These are small contracts or scaffolding; the Enigma
 engine remains shared. New duplication and all other warnings fail CI.
+
+Applications can use `tools.app_logging.configure_flask_logging` for shared
+request and error activity logs. Runtime `.log` files belong under the root
+`logs/` folder. The Turing simulator and direct Mistral chat write one JSON-line
+file per chat under `logs/chats`, including the selected options and
+conversation turns. All `.log` files are ignored by Git so local conversations
+and activity stay on the user's machine.

@@ -11,14 +11,15 @@
 <section class="panel"><h2>Set the conversation</h2>
 <form id="setup"><div class="settings"><label>Voice
 <select id="persona"><option value="technical">Technical assistant · no historical persona</option>
-{% for persona in personas %}<option value="{{ persona.persona_id }}">{{ persona.label }}{% if persona.is_fictional %} · fictional modern continuation{% else %} · through {{ persona.knowledge_cutoff_year }}{% endif %}</option>{% endfor %}
+{% for persona in personas %}<option value="{{ persona.persona_id }}"{% if persona.persona_id == 'turing_1952' %} selected{% endif %}>{{ persona.label }}{% if persona.is_fictional %} · fictional modern continuation{% else %} · through {{ persona.knowledge_cutoff_year }}{% endif %}</option>{% endfor %}
 </select></label><label>Format<select id="kind"><option value="chat">Chat and inspect evidence</option>
 <option value="blind">Blind comparison · invite a human respondent</option></select></label></div>
-<p class="muted">Historical modes return evidence excerpts, not invented first-person quotations. Undated biographical claims are withheld from historical cutoffs. The modern continuation is explicitly fictional.</p>
+<p class="muted">You are speaking with a simulated Alan Turing persona for the selected period. Replies use an evidence informed voice and respect the knowledge cutoff. Generated words are not historical quotations. Supporting records appear with answers when available; unsourced persona interpretations are part of the simulation and are not established facts. The modern continuation is explicitly fictional.</p>
 <button type="submit">Start session</button></form>
 <p id="invitation" hidden>Give this link to your human respondent in a separate browser tab: <a id="invite-link" target="_blank" rel="noreferrer">Open respondent room</a>. For a blind exercise, ask another person to answer.</p>
 </section>
 <section id="conversation" class="panel" hidden><h2>Conversation</h2>
+<p id="session-options" class="muted" aria-live="polite"></p>
 <div id="transcript" aria-live="polite"></div>
 <form id="ask"><label for="question">Your question</label><textarea id="question" maxlength="2000" rows="3" required placeholder="What did you publish about computable numbers?"></textarea>
 <button type="submit" id="send">Send question</button><span class="muted">Up to six rounds per session.</span></form>
