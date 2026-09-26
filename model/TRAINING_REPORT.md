@@ -12,8 +12,13 @@ were outside the text-only scope.
 - Peak allocated GPU memory: 5,008,672,768 bytes (about 4.67 GiB)
 - Training duration: 463.7 seconds
 
-Base and fine-tuned exact-answer test metrics will be added after the local
-held-out evaluation completes. The test split is not included in training.
+Real inference through the chat application's Flask API succeeded: incrementing
+`1011` in a full training-style prompt returned `ANSWER: 1100`. A shorter
+paraphrase of the same task returned the incorrect `10111`, showing that this
+smoke check does not establish reliable exact answers. The full
+base-versus-adapter test-set comparison was stopped after the slow base-model
+pass reached 57 of 101 prompts. No held-out accuracy is claimed, and the test
+split was not included in training.
 This small synthetic benchmark measures only binary increment, unary addition,
 and Caesar decryption. It does not establish general reasoning or historical
 fidelity.

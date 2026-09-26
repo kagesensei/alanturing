@@ -11,7 +11,9 @@ No substitute model family is selected.
 - `finetune/outputs/Ministral-3-3B-turing-a1-qlora-v1/`: trained adapter and tokenizer.
 - `persona/alan_turing/`: evidence-backed historical persona data and validation.
 
-**Current status:** the GPU trial passed; full training and evaluation are in progress.
+**Current status:** the GPU trial and full training passed. Real chat inference
+returned the expected answer. The full held-out comparison was stopped before
+scoring completed.
 See [the training report](TRAINING_REPORT.md) for final measurements.
 
 ## Train

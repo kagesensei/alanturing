@@ -4,9 +4,10 @@ This directory keeps turing-a1's training code shareable in this Git repository,
 separate from the historical persona dataset and from APT_Watch's analyst model.
 It is a self-contained workflow directory, not a nested Git repository.
 
-**Current status:** a two-step GPU trial completed on the RTX 2070. The full
-one-epoch run and held-out evaluation are in progress. Final measurements are
-recorded in [the model report](../TRAINING_REPORT.md).
+**Current status:** a two-step GPU trial and the full one-epoch run completed
+on the RTX 2070. Real Flask chat inference returned the expected result. The
+full held-out comparison was stopped before scoring completed; see
+[the model report](../TRAINING_REPORT.md).
 
 ## Base model and local hardware
 
