@@ -1,148 +1,70 @@
-# Historical Notes & Reflections
+# Historical Notes and Technical Reflections
 
-Personal thoughts and inspirations behind this project — see the
-[root README](README.md) for the project itself and its roadmap.
+Architecture, lineage and implementation rationale for this project. Reference the [root README](README.md) for the project roadmap and module documentation.
 
-## Why Turing
+## Cryptanalytic Lineage
 
-Turing sits at the intersection of everything I work in: cryptanalysis,
-theoretical computer science, and the question of machine intelligence.
-Breaking Enigma wasn't just a wartime feat of code-breaking — it was
-mathematical logic applied under pressure to a real adversary, using
-techniques (the Bombe's consistency-checking, statistical cryptanalysis
-of Lorenz) that are direct ancestors of the kind of security and
-data-science work I do now. And the Turing Test asked, decades before it
-was fashionable to ask, what it would even mean for a machine to think —
-a question I still think about daily, professionally, in a very different
-form.
+Turing contributed to wartime cryptanalysis and to the theory of computation. His work is part of the history behind modern computing and security, though today's cybersecurity grew from many people and fields.
 
-## A connection I didn't expect
+The Bombe tested candidate Enigma settings against constraints from known plaintext and rejected settings that could not fit. Banburismus used statistical scoring, expressed in bans and decibans, to analyze overlapping Naval Enigma messages and help guide the work ([National Archives account](https://www.archives.gov/files/publications/prologue/1997/fall/turing.pdf)). These methods offer a useful comparison with modern search and analysis tools, though they were developed for a specific wartime cryptanalytic problem. Turing's 1950 imitation game addressed how to discuss machine intelligence. It was separate from his earlier work on computability and the limits of computation ([Turing's 1950 paper](https://academic.oup.com/mind/article/LIX/236/433/986238)).
 
-While building out this repo's Cryptanalysis & Enigma section, I was
-separately exploring, in another session, whether a fine-tuned model made
-sense for APT_Watch, my threat-intel project. That exploration concluded
-the *domain-fact* fine-tune I'd
-originally imagined was actually the wrong shape for APT_Watch — it's
-deliberately RAG-based with a hallucination guardrail, and baking facts
-into weights would fight that design rather than help it. What it does
-need, and what a fine-tune is legitimately good for, is *behavior*:
-producing concise, correctly-cited, appropriately-hedged analyst answers
-from a set of retrieved facts.
+## Architectural Separation: Retrieval Versus Fine-Tuning
 
-That left an open question: what would a fine-tune trained on *this*
-repo's content even be for? At the time, the answer was "nothing yet" —
-the Cryptanalysis section didn't exist. Now that it does, there's a real
-answer: the Turing Machine and Enigma/Bombe/Lorenz modules built here,
-along with their READMEs' explanations of *why* each piece works, are
-plausible source material for a second fine-tuned adapter — not a
-threat-intel analyst, but a CS-theory teaching voice, explaining
-computation and classical cryptanalysis the way this repo tries to.
+Threat intelligence changes quickly. A model's stored weights are a poor place to keep facts that need frequent updates. Retrieval can provide information from current sources while fine-tuning can shape a model's response style and task format. These are different tools with different jobs.
 
-It's a small thing, but it feels like the right kind of closing loop for
-a Turing tribute: his own work spanned both breaking codes and asking
-whether machines could think, and this project ended up doing a version
-of both — implementing his cryptanalysis, and (potentially) feeding a
-machine learning model meant to explain it. The fine-tuning workflow now
-lives in [`finetune/`](finetune), separately from the persona layer. This
-repository remains a source of truth clear enough to teach from, whether
-the reader is a person or a model.
+Retrieval augmented generation gives the model information from a separate source collection. It does not guarantee that the answer is supported or that citations are correct, so the application still needs source links and validation. Fine-tuning can influence response tendencies and improve performance on a task format. It cannot guarantee deterministic reasoning or correct answers. Tests and executable code should verify results where possible.
 
-## turing-a1: giving the Turing Test Simulator its own voice
+This repository provides tested examples and code that can support model development. The modules and engines serve two practical roles:
+* Tests and simulations for implemented machines and ciphers
+  * Test harnesses check rotor wiring, stepping logic and other defined behavior
+  * Simulators make machine states and transitions observable
+* Narrow training examples for computational tasks
+  * The current dataset covers binary increment, unary addition and Caesar decryption
+  * It does not contain statistical attack examples or step by step reasoning traces
 
-The early "teaching adapter" plan used the working name
-**`turing-a1-3B-instruct-abliterated-claudetuned`**: a Llama 3.2 3B
-Instruct base with possible ablation and teacher-generated training data.
-Those weight-editing and teacher-distillation steps have not been performed.
-The first checked-in workflow instead targets
-**`Llama-3.2-3B-turing-a1-qlora-v1`**, with deterministic engine-generated
-examples and a configurable base checkpoint. Suffixes will reflect work
-actually performed; no model has yet been trained or published here.
+## The turing-a1 Backend
 
-The deliberate choice, and the part worth writing down: this is *not*
-meant to be a general pentesting or exploit-generation model. It's scoped
-much narrower and more specifically — a **cryptanalysis / computational
-reasoning / security laboratory** model, which fits this project far
-better and gives it a real job to do rather than being "an abliterated
-Llama with no guardrails and no direction."
+The trained adapter targets a small set of computational tasks related to this project. It is not a general cryptanalyst and the current training data does not establish broad cryptanalysis ability.
 
-Its intended specialization:
+The configured base model is `mistralai/Ministral-3-3B-Instruct-2512-BF16`. The adapter is named `Ministral-3-3B-turing-a1-qlora-v1`. Training examples are generated from tested code for the narrow tasks listed above.
 
-- Classical cryptography — substitution/transposition ciphers, Enigma,
-  Lorenz/Tunny
-- Frequency and statistical cryptanalysis, crib-based/known-plaintext
-  attacks
-- Information theory — entropy, redundancy, and the distinction between
-  *encoding* and *encryption* (a distinction people conflate constantly)
-- Algorithm analysis and complexity
-- Turing machines, automata, computability theory
-- Binary representations and low-level bit/byte reasoning
-- Protocol reasoning and secure-code analysis
-- Puzzle solving and controlled, CTF-style security exercises
-- Reverse-engineering *concepts* and defensive vulnerability analysis
+### Core Specialization Scope
 
-For modern security topics specifically, the intent is that it explains
-**why** something is vulnerable and helps construct a reproducible lab
-experiment to demonstrate that — not that it orients around "how to break
-into things." That framing is the difference between a teaching tool and
-an offensive one, and it's the framing that should govern the training
-data, not just the system prompt layered on top at inference time.
+* Classical ciphers and rotor machines as planned areas for future specialization
+  * Substitution, transposition, Enigma stepping and Lorenz wheel kinematics
+  * Known-plaintext attacks, crib analysis and index of coincidence calculations
+* Information theory and algorithmic complexity as planned areas for future specialization
+  * Entropy bounds, redundancy reduction and the fundamental split between encoding and encryption
+  * Deterministic finite automata, Turing machine transition functions and undecidability proofs
+* Binary inspection and defensive verification as planned areas for future specialization
+  * Low-level bitwise operations and protocol state analysis
+  * Construction of reproducible, isolated test environments to demonstrate vulnerability mechanics
 
-A first-draft system prompt, to refine once real training begins:
+### System Prompt Definition
 
-> You are turing-a1, a cryptanalysis and computational-reasoning
-> laboratory assistant. You specialize in classical cryptography (Enigma,
-> Lorenz/Tunny, substitution and transposition ciphers), frequency and
-> statistical cryptanalysis, crib-based and known-plaintext attacks,
-> information theory (entropy, redundancy, encoding vs. encryption),
-> algorithm analysis, Turing machines and automata theory, computability,
-> binary representations, protocol reasoning, and secure-code analysis.
-> You enjoy puzzles and controlled, CTF-style security exercises. For
-> modern security questions, you explain *why* a system or piece of code
-> is vulnerable and help design a reproducible lab experiment to
-> demonstrate it against an intentionally vulnerable, consenting test
-> target — you are not a general-purpose penetration-testing or
-> exploit-development assistant, and you decline requests aimed at
-> compromising real, non-consenting systems.
+This prompt describes the intended behavior. It does not mean the current adapter has demonstrated every capability listed here.
 
-## Two separable concepts for turing-a1: specialization vs. persona
+> You are turing-a1, a laboratory assistant specialized in classical cryptanalysis, automata theory and computational reasoning. You analyze cipher mechanics, information entropy, algorithmic complexity and state machine transitions. When evaluating software vulnerabilities, you explain underlying protocol or architectural flaws and specify deterministic verification experiments for isolated test environments. You do not generate offensive exploitation tools or assist with unauthorized system access.
 
-As work started on an evidence-grounded Alan Turing persona (see
-[`persona/alan_turing`](persona/alan_turing)) as groundwork for the Turing
-Test Simulator, it became clear `turing-a1` needs to keep two things
-architecturally separate rather than fusing them into one always-on
-character:
+## Technical Work and Historical Persona
 
-1. **Domain specialization** — cryptanalysis, computational reasoning,
-   security-laboratory work, etc. (the scope described above under
-   "turing-a1: giving the Turing Test Simulator its own voice"). This is
-   the model's core technical competence and should work on its own,
-   without any persona layered on top.
-2. **Historical persona** — an optional, evidence-grounded Alan Turing
-   persona layer, sourced from `persona/alan_turing`'s provenance-tagged
-   data (historical fact vs. biographical evidence vs. evidence-based
-   inference vs. persona extrapolation vs. unknown — never silently
-   collapsed into one another).
+The project keeps technical tasks separate from the optional historical persona. This lets users run technical tasks without asking the model to roleplay. Persona records provide historical context, but they do not make unsupported claims reliable.
 
-The reason this separation matters: I should be able to use the technical
-model as a cryptanalysis/computational-reasoning assistant without forcing
-it to roleplay Alan Turing. Baking the persona into the specialization
-would make that impossible and would also make the specialization harder
-to reason about on its own terms. Concretely, this means the persona layer
-is an adapter/prompt-layer concern applied *on top of* the specialized
-model, not a rewrite of what the specialized model fundamentally is — and
-`persona/alan_turing`'s temporal personas (`turing_1936` through
-`turing_1952`, plus the explicitly fictional `turing_a1` continuation) are
-scoped independently of, and orthogonal to, the domain-specialization
-work.
+* **Layer 1: Domain Tasks**
+  * Covers the computational tasks included in the adapter's training data
+  * Can be extended with new tasks after adding and evaluating suitable examples
+* **Layer 2: Historical Persona**
+  * Uses optional persona records with source references and evidence labels
+  * Maintains explicit boundaries separating verified historical facts, biographical inferences and speculative roleplay
 
-## Open threads
+Decoupling these layers ensures that technical cryptanalysis can be queried directly without forcing the model into an artificial historical character.
 
-- The `turing-a1` workflow is now in [`finetune/`](finetune), separate from
-  the simulator and historical persona. Dataset preparation is implemented;
-  GPU training, measured base-versus-adapter evaluation, and publication
-  remain to be executed. The simulator connects through a model endpoint.
-- The computational and cryptanalysis roadmap implementations are complete.
-  The local Turing Test Simulator capstone is now implemented. Current work
-  focuses on reproducible evaluation and training its future turing-a1 backend.
-  This file is reflection, not a substitute for
-  working implementations and measured results.
+## Implementation Status
+
+* **Computational Engines**
+  * The repository contains Turing machine simulators and classical cryptanalysis projects
+  * Their tests check defined behavior and outputs rather than comparing the engines with historical benchmarks
+* **Model Training Pipeline**
+  * Fine-tuning code and evaluation tools reside in [`model/finetune/`](model/finetune)
+  * Persona profiles and source records reside in [`model/persona/alan_turing/`](model/persona/alan_turing)
+  * The one epoch adapter training run completed, but the full held out comparison did not finish
