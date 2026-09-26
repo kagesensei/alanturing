@@ -1,7 +1,6 @@
 # Install the CUDA-enabled PyTorch wheel first; see README.md.
 torch==2.8.0
-transformers==4.57.3
-trl==0.26.2
+transformers==5.3.0
 peft==0.18.0
 datasets==4.4.1
 accelerate==1.12.0

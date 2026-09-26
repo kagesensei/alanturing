@@ -5,9 +5,14 @@ import json
 import os
 from pathlib import Path
 import secrets
+import sys
 import threading
 
 from flask import Flask, jsonify, request
+
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from model_runtime import load_text_model  # pylint: disable=wrong-import-position
 
 
 class InferenceEngine:
@@ -33,24 +38,14 @@ class InferenceEngine:
 
 def load_adapter(directory: Path):
     # pylint: disable=import-outside-toplevel,import-error
-    import torch
     from peft import PeftModel
-    from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+    from transformers import AutoTokenizer
     # pylint: enable=import-outside-toplevel,import-error
 
     manifest = json.loads((directory / 'run_manifest.json').read_text(encoding='utf-8'))
     if manifest['status'] != 'adapter trained; not published':
         raise ValueError('Expected a completed training manifest')
-    if not torch.cuda.is_available():
-        raise ValueError('This local adapter server requires CUDA')
-    quantization = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type='nf4',
-                                     bnb_4bit_use_double_quant=True,
-                                     bnb_4bit_compute_dtype=torch.float16)
-    base = AutoModelForCausalLM.from_pretrained(
-        manifest['base_model'], revision=manifest['resolved_revision'],
-        quantization_config=quantization, device_map={'': 0}, torch_dtype=torch.float16,
-        cache_dir=Path(__file__).resolve().parents[1] / 'base', local_files_only=True,
-    )
+    base = load_text_model(manifest['base_model'], manifest['resolved_revision'], offline=True)
     model = PeftModel.from_pretrained(base, directory)
     model.eval()
     tokenizer = AutoTokenizer.from_pretrained(directory)

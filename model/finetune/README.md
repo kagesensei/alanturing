@@ -4,34 +4,34 @@ This directory keeps turing-a1's training code shareable in this Git repository,
 separate from the historical persona dataset and from APT_Watch's analyst model.
 It is a self-contained workflow directory, not a nested Git repository.
 
-**Current status:** CUDA PyTorch and the pinned training stack are installed;
-the RTX 2070 is detected and dataset generation has completed. Llama download
-requires Hugging Face access/authentication (the unauthenticated request returned
-HTTP 401). GPU training, real model inference and publication have not run.
-See [local model setup](../README.md).
+**Current status:** a two-step GPU trial completed on the RTX 2070. The full
+one-epoch run and held-out evaluation are in progress. Final measurements are
+recorded in [the model report](../TRAINING_REPORT.md).
 
-## First model
+## Base model and local hardware
 
-The default is [Meta Llama 3.2 3B Instruct](https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct),
-with an output named `Llama-3.2-3B-turing-a1-qlora-v1`. The detected local GPU is
-an RTX 2070 with 8 GiB VRAM. Start with 4-bit NF4, FP16 compute, a 256-token
+The approved base is
+[Ministral 3 3B Instruct BF16](https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512-BF16),
+pinned to commit `b6d637bef2393152b3da2b2fde72eecdee30557e`. The output is
+`Ministral-3-3B-turing-a1-qlora-v1`. This is a text-only QLoRA adaptation of
+Mistral's language weights. The vision tower and projector are not loaded.
+Missing or unmapped language weights abort loading rather than silently training
+randomly initialized parameters. Base files are stored in `model/base/`.
+
+The RTX 2070 has 8 GiB VRAM. The run uses 4-bit NF4, FP16 compute, a 256-token
 sequence limit, batch size one, rank-eight adapters on attention Q/V projections,
-and gradient checkpointing. This is a conservative starting point, not a
-measured promise that a full training run fits. BF16 and Flash Attention are
-not assumed for this GPU.
+gradient accumulation of 16, and gradient checkpointing. Trainable adapter
+parameters use FP32 for compatibility with FP16 gradient scaling.
 
-`config.json` accepts another compatible Hugging Face checkpoint, including a
-full-precision abliterated derivative. Use its actual model ID and preserve the
-upstream provenance/license. **Do not use a GGUF file as the training checkpoint.**
-Keep an unmodified baseline for comparison. Do not append `abliterated`,
-`distilled`, or `claudetuned` unless those steps actually happened and are
-documented. This workflow performs supervised fine-tuning with QLoRA; it does
-not perform ablation or teacher-model distillation.
+Transformers 5.3.0 supports the Ministral architecture. We use its `Trainer`
+with PEFT and explicit completion-only labels. Prompt and padding tokens have
+label `-100`; the complete answer and EOS remain supervised. Every example's
+prompt prefix and length are validated before training. The old TRL trainer is
+not used because its tokenization contract differs from Transformers 5.
 
-The base model may require accepting Meta's access terms and authenticating with
-Hugging Face. The Llama license requires derivative model names to begin with
-“Llama”; distribution also needs the upstream license/notice and “Built with
-Llama” attribution. Review the linked model's terms when preparing publication.
+The base is Apache-2.0 licensed. This workflow performs supervised QLoRA; it
+has not performed ablation or teacher distillation. Historical persona evidence
+remains a separate, optional application layer.
 
 ## Generate and inspect data
 
@@ -67,7 +67,7 @@ python -m pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/
 python -m pip install -r model/finetune/requirements.txt
 python -m pip check
 python -c "import torch; print(torch.cuda.is_available())"
-python model/finetune/train.py --max-steps 5
+python model/finetune/train.py --config model/finetune/trial_config.json --max-steps 2
 ```
 
 The CUDA wheel and your installed driver must be compatible. Current
@@ -75,7 +75,7 @@ The CUDA wheel and your installed driver must be compatible. Current
 describes platform/GPU support. If the local Windows stack fails, use a supported
 Linux GPU environment rather than claiming the trial succeeded.
 
-Before a full one-epoch run, choose a new `output_name` so the trial is retained:
+The trial configuration has a separate output name. Start the full one-epoch run with:
 
 ```text
 python model/finetune/train.py
@@ -89,7 +89,7 @@ the prompt. Overlength examples fail rather than silently truncating the answer.
 The untouched test split is never supplied to the trainer. Training refuses to
 overwrite an existing output directory and never publishes automatically.
 
-The implementation follows [TRL 0.26.2 SFT](https://huggingface.co/docs/trl/v0.26.2/en/sft_trainer)
+The implementation uses [Transformers Trainer](https://huggingface.co/docs/transformers/main_classes/trainer)
 and [PEFT quantization](https://huggingface.co/docs/peft/en/developer_guides/quantization).
 Standard CI covers the lightweight workflow and serving contract. It does not
 install GPU dependencies or claim to exercise the training loop.
@@ -99,7 +99,7 @@ install GPU dependencies or claim to exercise the training loop.
 After an actual successful training run:
 
 ```text
-python model/finetune/serve.py --adapter model/finetune/outputs/Llama-3.2-3B-turing-a1-qlora-v1
+python model/finetune/serve.py --adapter model/finetune/outputs/Ministral-3-3B-turing-a1-qlora-v1
 ```
 
 The local server reloads the recorded base revision and adapter and exposes
@@ -107,16 +107,23 @@ The local server reloads the recorded base revision and adapter and exposes
 512 output tokens and 4,096 input tokens. Set `TURING_MODEL_API_KEY` to require
 a bearer key. It is a single-process local development server.
 
-Configure the [simulator](../../bonus/turing_test_simulator) with this endpoint and
-the output model name. Its historical mode requires evidence-selection JSON,
+The [simulator](../../bonus/turing_test_simulator) loads the local adapter directly
+by default. This separate endpoint is optional. Its historical mode requires evidence-selection JSON,
 which this starter arithmetic/cipher dataset does **not** train explicitly.
 Evaluate that capability separately; invalid persona replies fail closed.
 
-Run `evaluate.py` against the same test split for both the served original base
+Run the offline base-versus-adapter comparison with identical greedy decoding:
+
+```text
+python model/finetune/evaluate_local.py --adapter model/finetune/outputs/Ministral-3-3B-turing-a1-qlora-v1
+```
+
+JSON predictions and metrics are saved under `model/finetune/evaluations/`.
+Alternatively, run `evaluate.py` against the same test split for both the served original base
 and the served adapter, changing the model and output filenames:
 
 ```text
-python model/finetune/evaluate.py --endpoint http://127.0.0.1:8080/v1/chat/completions --model Llama-3.2-3B-turing-a1-qlora-v1 --output model/finetune/adapter-evaluation.json
+python model/finetune/evaluate.py --endpoint http://127.0.0.1:8080/v1/chat/completions --model Ministral-3-3B-turing-a1-qlora-v1 --output model/finetune/adapter-evaluation.json
 ```
 
 Reports include predictions, exact-answer accuracy by task, endpoint failures,

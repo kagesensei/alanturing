@@ -5,7 +5,7 @@ import unittest
 
 from evaluate import score_examples
 from prepare_data import generate_examples, partition, validate_splits, write_dataset
-from train import ensure_lengths
+from train import ensure_lengths, tokenize_example
 from training_config import HERE, load_config, load_splits, preflight
 
 
@@ -21,10 +21,38 @@ class FixtureClient:
 
 class FixtureTokenizer:
     @staticmethod
-    def apply_chat_template(_messages, tokenize):
-        if not tokenize:
+    def apply_chat_template(_messages, tokenize, return_dict=False):
+        if not tokenize or return_dict:
             raise ValueError('This fixture only returns tokens')
         return list(range(20))
+
+
+class MaskTokenizer:
+    def __init__(self, prefix_matches=True):
+        self.prefix_matches = prefix_matches
+
+    def apply_chat_template(self, messages, tokenize, return_dict, add_generation_prompt=False):
+        if not tokenize or return_dict:
+            raise ValueError('Expected plain token IDs')
+        if add_generation_prompt:
+            return [1, 10, 20]
+        if len(messages) != 2:
+            raise ValueError('Expected prompt and completion')
+        return [1, 10, 20 if self.prefix_matches else 21, 42, 2]
+
+
+class TestCompletionMask(unittest.TestCase):
+    def test_only_answer_and_eos_contribute_to_loss(self):
+        row = {'prompt': [{'role': 'user', 'content': 'Question'}],
+               'completion': [{'role': 'assistant', 'content': 'Answer'}]}
+        encoded = tokenize_example(MaskTokenizer(), row, 8)
+        self.assertEqual(encoded['labels'], [-100, -100, -100, 42, 2])
+        self.assertEqual(encoded['input_ids'], [1, 10, 20, 42, 2])
+        self.assertEqual(encoded['attention_mask'], [1, 1, 1, 1, 1])
+        with self.assertRaisesRegex(ValueError, 'prompt prefix'):
+            tokenize_example(MaskTokenizer(False), row, 8)
+        with self.assertRaisesRegex(ValueError, 'max_length'):
+            tokenize_example(MaskTokenizer(), row, 4)
 
 
 class TestTrainingData(unittest.TestCase):

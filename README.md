@@ -105,9 +105,9 @@ Any models, datasets, or spaces published from this project are tracked in
 
 The [turing-a1 training workflow](model/finetune) now lives here as a separate
 directory: deterministic domain examples, disjoint evaluation splits, a 3B
-QLoRA configuration, and local serving/evaluation scripts. Data preparation and
-contract tests run locally; GPU training and publication have not run. The
-historical persona remains an optional application layer.
+Ministral QLoRA configuration, and local serving/evaluation scripts. See the
+[training report](model/TRAINING_REPORT.md) for measured results. The historical
+persona remains an optional application layer.
 
 ## Roadmap
 

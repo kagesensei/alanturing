@@ -1,26 +1,24 @@
-# Local Llama model
+# Local Ministral model
 
-This folder contains the Llama training workflow and the optional historical
-persona data. The configured base is `meta-llama/Llama-3.2-3B-Instruct`.
+This folder contains the Ministral training workflow and the optional historical
+persona data. The configured base is `mistralai/Ministral-3-3B-Instruct-2512-BF16`.
 No substitute model family is selected.
 
 ## Layout
 
-- `base/`: downloaded Llama base weights (ignored by Git).
+- `base/`: downloaded Ministral base weights (ignored by Git).
 - `finetune/`: dataset generation, training, evaluation and serving code.
-- `finetune/outputs/Llama-3.2-3B-turing-a1-qlora-v1/`: trained adapter and tokenizer.
+- `finetune/outputs/Ministral-3-3B-turing-a1-qlora-v1/`: trained adapter and tokenizer.
 - `persona/alan_turing/`: evidence-backed historical persona data and validation.
 
-**Current status:** CUDA PyTorch detects the RTX 2070, dependencies are installed,
-and the training data is generated. Training has not run: the Llama repository
-returned HTTP 401 and there is no cached Hugging Face login. No trained weights
-are claimed to exist.
+**Current status:** the GPU trial passed; full training and evaluation are in progress.
+See [the training report](TRAINING_REPORT.md) for final measurements.
 
 ## Train
 
-Activate the root Python 3.12 environment. Obtain access to the configured
-[Llama checkpoint](https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct),
-then authenticate locally with `hf auth login`. Do not put tokens in source files.
+Activate the root Python 3.12 environment. The official checkpoint is public.
+The pinned revision and downloaded base weights allow this run to work offline.
+See [training setup](finetune/README.md) for dependencies on a new machine.
 
 ```powershell
 .\.venv\Scripts\Activate.ps1

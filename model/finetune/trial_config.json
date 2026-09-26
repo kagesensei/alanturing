@@ -1,7 +1,7 @@
 {
   "base_model": "mistralai/Ministral-3-3B-Instruct-2512-BF16",
   "revision": "b6d637bef2393152b3da2b2fde72eecdee30557e",
-  "output_name": "Ministral-3-3B-turing-a1-qlora-v1",
+  "output_name": "Ministral-3-3B-turing-a1-qlora-v1-trial2",
   "max_length": 256,
   "lora_rank": 8,
   "gradient_accumulation_steps": 16,

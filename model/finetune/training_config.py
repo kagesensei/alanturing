@@ -39,7 +39,7 @@ def load_splits(directory: Path) -> dict:
 def preflight(config: dict, directory: Path) -> dict:
     splits = load_splits(directory)
     versions = {}
-    packages = ('torch', 'transformers', 'trl', 'peft', 'datasets', 'accelerate', 'bitsandbytes')
+    packages = ('torch', 'transformers', 'peft', 'datasets', 'accelerate', 'bitsandbytes')
     for package in packages:
         try:
             versions[package] = metadata.version(package)

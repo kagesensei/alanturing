@@ -127,8 +127,8 @@ Python:
 
 ## Model selection
 
-- Use Llama for this project's fine-tuned model. Do not substitute another
-  model family to work around download or access failures.
+- The user approved Ministral 3 3B Instruct as the fine-tuning base after
+  considering Llama. Do not substitute another model family without instruction.
 - The user explicitly excludes Chinese models.
 
 ## Historical persona guidance

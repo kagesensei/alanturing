@@ -16,7 +16,7 @@ class LocalModelClient:
     def __init__(self, directory=None):
         self.directory = Path(directory or os.environ.get(
             'TURING_MODEL_ADAPTER',
-            ROOT / 'model' / 'finetune' / 'outputs' / 'Llama-3.2-3B-turing-a1-qlora-v1',
+            ROOT / 'model' / 'finetune' / 'outputs' / 'Ministral-3-3B-turing-a1-qlora-v1',
         ))
         self.engine = None
         self.lock = threading.Lock()
@@ -24,7 +24,7 @@ class LocalModelClient:
     @property
     def label(self):
         if not (self.directory / 'run_manifest.json').is_file():
-            return 'local Llama adapter missing; training required'
+            return 'local Ministral adapter missing; training required'
         return f'local fine-tuned model: {self.directory.name}'
 
     def complete(self, messages):
