@@ -8,15 +8,15 @@ include algorithmic computation, state machines, statistical cryptanalysis and e
 
 ## 1. Foundations and Mechanical Cryptanalysis (1930s to 1950s)
 
-### 1936 | Alan Turing
-* **Milestone:** Formulation of the Universal Turing Machine and the Halting Problem in his paper On Computable 
-Numbers with an Application to the Entscheidungs problem
+### 1936 | [Alan Turing](https://en.wikipedia.org/wiki/Alan_Turing) 
+* **Milestone:** Formulation of the [Universal Turing Machine](https://en.wikipedia.org/wiki/Universal_Turing_machine) and the [Halting Problem](https://en.wikipedia.org/wiki/Halting_problem) in his paper On [Computable 
+Numbers with an Application to the Entscheidungs problem](https://www.cs.virginia.edu/~robins/Turing_Paper_1936.pdf)
 * **Paradigm Shift:** 
   * Proved that a single theoretical machine could execute any computable sequence
   * He established formal state transitions, stored programs and theoretical limits on decidability
 * **Lineage:** 
   * Established the formal mathematics of computation
-  * Uncomputability and the Halting Problem directly underpin Rice's Theorem and the impossibility of perfectly 
+  * Uncomputability and the Halting Problem directly underpin [Rice's Theorem](https://en.wikipedia.org/wiki/Rice%27s_theorem) and the impossibility of perfectly 
   detecting malicious code via static analysis
 
 ### 1939 to 1940 | Marian Rejewski, Alan Turing and Gordon Welchman
