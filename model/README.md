@@ -16,6 +16,19 @@ returned the expected answer. The full held-out comparison was stopped before
 scoring completed.
 See [the training report](TRAINING_REPORT.md) for final measurements.
 
+## Hugging Face
+
+The public [turing-a1 Ministral adapter](https://huggingface.co/kageskull/Ministral-3-3B-turing-a1-qlora-v1)
+contains the LoRA weights, adapter configuration, tokenizer files and model
+card. It does not include the Ministral base-model weights. Download the base
+checkpoint separately as described in [the fine-tuning workflow](finetune/README.md).
+
+The public [synthetic computational-task dataset](https://huggingface.co/datasets/kageskull/turing-a1-synthetic-computational-tasks)
+contains 1,018 examples split into 816 training, 101 validation and 101 test
+examples. It covers binary increment, unary addition and Caesar decryption
+with a known shift. The dataset is licensed under GPL-3.0. The historical
+persona files are not included in either publication.
+
 ## Train
 
 Activate the root Python 3.12 environment. The official checkpoint is public.

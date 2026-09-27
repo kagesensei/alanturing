@@ -22,3 +22,17 @@ split was not included in training.
 This small synthetic benchmark measures only binary increment, unary addition,
 and Caesar decryption. It does not establish general reasoning or historical
 fidelity.
+
+## Hugging Face artifacts
+
+The public [Ministral adapter](https://huggingface.co/kageskull/Ministral-3-3B-turing-a1-qlora-v1)
+contains the LoRA weights, adapter configuration, tokenizer files, model card
+and training metadata. It does not contain the base model weights. Load it with
+the pinned Ministral base revision listed above.
+
+The public [training dataset](https://huggingface.co/datasets/kageskull/turing-a1-synthetic-computational-tasks)
+contains the exact synthetic data used for this run: 816 training examples, 101
+validation examples and 101 held-out test examples. It includes binary
+increment, unary addition and known-shift Caesar decryption examples, plus the
+generation manifest and GPL-3.0 license. The test split was reserved for
+evaluation and was not used during training.
