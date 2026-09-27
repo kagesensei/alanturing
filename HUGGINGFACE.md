@@ -13,11 +13,9 @@ Profile: [huggingface.co/kageskull](https://huggingface.co/kageskull)
 
 ## Datasets
 
-_None published yet._
-
 | Name | Link | Roadmap item | Notes |
 | --- | --- | --- | --- |
-| | | | |
+| turing-a1-synthetic-computational-tasks | [Public dataset repository](https://huggingface.co/datasets/kageskull/turing-a1-synthetic-computational-tasks) | turing-a1 Fine-Tuning | 1,018 deterministic examples for binary increment, unary addition and known-shift Caesar decryption, split into training, validation and test sets. GPL-3.0. |
 
 ## Spaces
 
